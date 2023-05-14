@@ -13,7 +13,7 @@ User.create(
 
 Post.create(
     title: "Diapers - Size 4",
-    description: "I have a pack of size 4 daipers. Pampers brand. Never been opened.",
+    description: "I have a pack of size 4 diapers. Pampers brand. Never been opened.",
     zipcode: 75226,
     user_id: 1,
     donation_id: 1
@@ -21,9 +21,11 @@ Post.create(
 
 Donation.create(
     post_id: 1,
+    user_id: 1,
     recipient_id: 2,
     review_id: 1
 )
+
 
 Review.create(
     user_id: 2,

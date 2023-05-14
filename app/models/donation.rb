@@ -6,4 +6,9 @@ class Donation < ApplicationRecord
         donor = User.find(post.user_id)
         donor.username
     end
+
+    def review
+        Review.find(self.review_id)
+    end
+
 end
