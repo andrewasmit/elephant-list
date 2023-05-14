@@ -1,2 +1,3 @@
-class TransactionsController < ApplicationController
+class DonationsController < ApplicationController
+  
 end

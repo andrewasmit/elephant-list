@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :users
-  resources :transactions
+  resources :donations
   resources :messages
   resources :reviews
   resources :posts
