@@ -21,7 +21,6 @@ Post.create(
 
 Donation.create(
     post_id: 1,
-    user_id: 1,
     recipient_id: 2,
     review_id: 1
 )
@@ -41,6 +40,22 @@ Post.create(
     description: Faker::Lorem.paragraph,
     zipcode: Faker::Address.zip_code,
     user_id: Faker::Number.between(from: 1, to: 2),
+)
+end
+
+5.times do
+Message.create(
+    user_id: 1,
+    recipient_id: 2,
+    body: Faker::Lorem.paragraph
+)
+end
+
+5.times do
+Message.create(
+    user_id: 2,
+    recipient_id: 1,
+    body: Faker::Lorem.paragraph
 )
 end
 
