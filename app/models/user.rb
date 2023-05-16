@@ -11,10 +11,11 @@ class User < ApplicationRecord
         end
     end
 
-    def all_messages
-        arr = [...self.messages]
-        recieved = [...Message.where(recipient_id: self.id)]
-        arr + recieved
+    def all_chatrooms
+        chatrooms = Chatroom.where(user_a_id: self.id).or(Chatroom.where(user_b_id: self.id))
+        chatrooms.map do |chatroom|
+            chatroom.messages
+        end
     end
 
 end

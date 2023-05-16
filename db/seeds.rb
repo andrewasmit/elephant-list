@@ -11,6 +11,11 @@ User.create(
     password: "123", 
     email_address: Faker::Internet.email )
 
+User.create(
+    username: "Test2", 
+    password: "123", 
+    email_address: Faker::Internet.email )
+
 Post.create(
     title: "Diapers - Size 4",
     description: "I have a pack of size 4 diapers. Pampers brand. Never been opened.",
@@ -48,6 +53,11 @@ Chatroom.create(
     user_b_id: 2
 )
 
+Chatroom.create(
+    user_a_id: 3,
+    user_b_id: 1
+)
+
 5.times do
 Message.create(
     user_id: 1,
@@ -63,6 +73,25 @@ Message.create(
     recipient_id: 1,
     body: Faker::Lorem.paragraph,
     chatroom_id: 1
+)
+end
+
+
+5.times do
+Message.create(
+    user_id: 3,
+    recipient_id: 1,
+    body: Faker::Lorem.paragraph,
+    chatroom_id: 2
+)
+end
+
+5.times do
+Message.create(
+    user_id: 1,
+    recipient_id: 3,
+    body: Faker::Lorem.paragraph,
+    chatroom_id: 2
 )
 end
 
