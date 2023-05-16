@@ -43,11 +43,17 @@ Post.create(
 )
 end
 
+Chatroom.create(
+    user_a_id: 1,
+    user_b_id: 2
+)
+
 5.times do
 Message.create(
     user_id: 1,
     recipient_id: 2,
-    body: Faker::Lorem.paragraph
+    body: Faker::Lorem.paragraph,
+    chatroom_id: 1
 )
 end
 
@@ -55,7 +61,8 @@ end
 Message.create(
     user_id: 2,
     recipient_id: 1,
-    body: Faker::Lorem.paragraph
+    body: Faker::Lorem.paragraph,
+    chatroom_id: 1
 )
 end
 

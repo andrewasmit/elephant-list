@@ -13,10 +13,8 @@ class User < ApplicationRecord
 
     def all_messages
         arr = [...self.messages]
-        recieved = Message.where(recipient_id: self.id)
-        # arr.flatten.push(recieved).flatten
-
-        # Still not able to concat the two arrays properly...
+        recieved = [...Message.where(recipient_id: self.id)]
+        arr + recieved
     end
 
 end
