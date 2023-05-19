@@ -25,5 +25,6 @@ class User < ApplicationRecord
             chatroom.messages
         end
     end
+    
 
 end
