@@ -4,4 +4,7 @@ class Post < ApplicationRecord
     # has_rich_body :text
     has_one :donation
     belongs_to :user
+
+    validates_presence_of :title, :description, :zipcode
+
 end

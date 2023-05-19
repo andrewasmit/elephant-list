@@ -5,6 +5,10 @@ class UsersController < ApplicationController
         render json: user, status: :created
     end
 
+    def index
+        render json: User.all
+    end
+
     private
 
     def user_params
