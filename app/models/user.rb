@@ -4,7 +4,12 @@ class User < ApplicationRecord
     has_many :donations, through: :posts
     has_many :messages
 
-    validates :username, presence: true
+    validates_presence_of :username, :password, :password_confirmation, :email_address
+    validates_length_of :username, :email_address, maximum: 50
+    validates_length_of :username, :email_address, :password, minimum: 6
+    validates_format_of :email_address, with: URI::MailTo::EMAIL_REGEXP
+
+
 
 
     def reviews
