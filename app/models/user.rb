@@ -4,6 +4,9 @@ class User < ApplicationRecord
     has_many :donations, through: :posts
     has_many :messages
 
+    validates :username, presence: true
+
+
     def reviews
         reviewed_donations = self.donations if :review_id.present?
         reviewed_donations.map do |donation|
