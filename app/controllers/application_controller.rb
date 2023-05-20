@@ -1,7 +1,14 @@
 class ApplicationController < ActionController::Base
     skip_before_action :verify_authenticity_token
+    before_action :authorize
+
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
     rescue_from ActiveRecord::RecordNotFound, with: :record_not_found_response
+
+    def authorize
+        return render json: { error: "Not authorized" }, status: :unauthorized unless session.include? :user_id
+    end
+
 
     private 
 
