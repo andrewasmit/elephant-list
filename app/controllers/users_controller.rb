@@ -6,7 +6,12 @@ class UsersController < ApplicationController
     end
 
     def index
-        render json: User.all
+        render json: User.all, status: :ok
+    end
+
+    def my_profile
+        user = User.find(session[:user_id])
+        render json: user, status: :ok
     end
 
     private

@@ -10,8 +10,6 @@ class User < ApplicationRecord
     validates_format_of :email_address, with: URI::MailTo::EMAIL_REGEXP
 
 
-
-
     def reviews
         reviewed_donations = self.donations if :review_id.present?
         reviewed_donations.map do |donation|
@@ -19,12 +17,12 @@ class User < ApplicationRecord
         end
     end
 
-    def all_chatrooms
-        chatrooms = Chatroom.where(user_a_id: self.id).or(Chatroom.where(user_b_id: self.id))
-        chatrooms.map do |chatroom|
-            chatroom.messages
-        end
-    end
+    # def all_chatrooms
+    #     chatrooms = Chatroom.where(user_a_id: self.id).or(Chatroom.where(user_b_id: self.id))
+    #     chatrooms.map do |chatroom|
+    #         chatroom.messages
+    #     end
+    # end
     
 
 end
