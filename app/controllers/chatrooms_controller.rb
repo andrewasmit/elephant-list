@@ -7,6 +7,11 @@ class ChatroomsController < ApplicationController
         render json: chatroom.messages, status: :created
     end
 
+    def destroy
+        chatroom = Chatroom.find(params[:id])
+        chatroom.destroy, status: :accepted
+    end
+
     private
     def chatroom_params
         params.permit(:user_a_id, :user_b_id)
