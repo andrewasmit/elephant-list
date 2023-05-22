@@ -8,13 +8,13 @@ User.create(
     email_address: Faker::Internet.email)
 
 User.create(
-    username: "Test1", 
+    username: "Testing123", 
     password: "123456", 
     password_confirmation: "123456",
     email_address: Faker::Internet.email )
 
 User.create(
-    username: "Test2", 
+    username: "Testing456", 
     password: "123456", 
     password_confirmation: "123456",
     email_address: Faker::Internet.email )
