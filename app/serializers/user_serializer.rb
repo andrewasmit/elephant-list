@@ -15,13 +15,13 @@ class UserSerializer < ActiveModel::Serializer
           }
         end
     end
-end
-
-def reviews
-  reviewed_donations = self.object.donations.filter { |d| d.review_id != nil}
-  reviewed_donations.map do |donation|
-      Review.find(donation.review_id)
   end
-end
+
+  def reviews
+    reviewed_donations = self.object.donations.filter { |d| d.review_id != nil}
+    reviewed_donations.map do |donation|
+        Review.find(donation.review_id)
+    end
+  end
 
 end

@@ -6,6 +6,11 @@ class ReviewsController < ApplicationController
         render json: review, status: :created
     end
 
+    def update
+        review = Review.find(params[:id])
+        review.update(review_params)
+        render json: review, status: :ok
+    end
 
 
     private
