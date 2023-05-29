@@ -17,6 +17,10 @@ class User < ApplicationRecord
     #         chatroom.messages
     #     end
     # end
+
+    def reviews
+        Review.all.where(reviewed_id: session[:user_id])
+    end
     
 
 end
