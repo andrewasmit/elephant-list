@@ -1,22 +1,28 @@
 class MessagesController < ApplicationController
+    before_action :authorize_message_changes, only: [:update]
 
 
     def create
-        # Check logged in user for already created chatroom with recipient id
-        # user = User.find(session[:user_id])
         message = Message.create!(message_params)
         render json: message, status: :created
     end
 
-    private
-    def message_params
-        params.permit(:body, :user_id, :chatroom_id, :recipient_id )
+    def update
+        message = Message.find(params[:id])
+        message.update!(message_params)
+        render json: message, status: :accepted
     end
 
-    # def check_for_chatroom
-    #     author = User.find(session[:user_id])
-    #     recipient = User.find(recipient_id)
-    #     chatroom = Chatroom.where(user_a_id: author.id, user_b_id:recipient.id).or(Chatroom.where(user_a_id: recipient.id, user_b_id: author.id))
-    # end
+
+    private
+    def message_params
+        params.permit(:id, :body, :user_id, :chatroom_id, :recipient_id )
+    end
+
+    def authorize_message_changes
+        message = Message.find(params[:id])
+        byebug
+        render json: { error: "You are not authorized to edit or delete messages that you did not create." }, status: :unauthorized unless message.user_id == session[:user_id]
+    end
 
 end

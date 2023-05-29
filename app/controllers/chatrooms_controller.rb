@@ -1,7 +1,7 @@
 class ChatroomsController < ApplicationController
     before_action :check_for_chatroom
 
-    def create_new_thread
+    def create
         chatroom = Chatroom.create!(chatroom_params)
         chatroom.messages.create!(message_params)
         render json: chatroom.messages, status: :created
@@ -9,7 +9,7 @@ class ChatroomsController < ApplicationController
 
     def destroy
         chatroom = Chatroom.find(params[:id])
-        chatroom.destroy, status: :accepted
+        chatroom.destroy
     end
 
     private
