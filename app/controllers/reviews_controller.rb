@@ -6,6 +6,7 @@ class ReviewsController < ApplicationController
         donation = Donation.find(params[:donation_id])
         review = donation.reviews.create!(review_params)
         donation.review_id = review.id
+        donation.save
         render json: review, status: :created
     end
 
