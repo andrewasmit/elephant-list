@@ -1,11 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
-import PostForm from './components/PostForm';
+import "./App.css";
+import PostForm from "./components/PostForm";
+import SignInForm from "./components/SignInForm";
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <PostForm />
+      <SignInForm />
     </div>
   );
 }
