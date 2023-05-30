@@ -13,6 +13,7 @@ function PostForm() {
       "This is a  description of the Test Post"
     );
     formData.append("post[zipcode]", "90210");
+    formData.append("post[user_id]", "1");
 
     for (let i = 0; i < formImages.length; i++) {
       formData.append("post[images][]", formImages[i]);
