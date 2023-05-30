@@ -2,7 +2,7 @@ class PostsController < ApplicationController
 
     def create
         post = Post.create!(post_params)
-        render json: post, status: :created
+        render json: post, include: :images, status: :created
     end
 
     def index

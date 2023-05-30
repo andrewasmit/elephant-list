@@ -5,4 +5,11 @@ class Post < ApplicationRecord
 
     validates_presence_of :title, :description, :zipcode
 
+
+    def image_url
+        if images.attached?
+            images.map{ |img| Rails.application.routes.url_helpers.url_for(img)}
+        end
+    end
+
 end
