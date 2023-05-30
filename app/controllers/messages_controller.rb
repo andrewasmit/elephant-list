@@ -21,7 +21,6 @@ class MessagesController < ApplicationController
 
     def authorize_message_changes
         message = Message.find(params[:id])
-        byebug
         render json: { error: "You are not authorized to edit or delete messages that you did not create." }, status: :unauthorized unless message.user_id == session[:user_id]
     end
 

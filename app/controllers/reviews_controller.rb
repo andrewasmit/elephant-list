@@ -2,7 +2,6 @@ class ReviewsController < ApplicationController
     before_action :authorize_edit_review, only: [:update]
 
     def create
-        byebug
         donation = Donation.find(params[:donation_id])
         review = donation.reviews.create!(review_params)
         donation.review_id = review.id

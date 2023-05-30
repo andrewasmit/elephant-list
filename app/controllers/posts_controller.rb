@@ -9,9 +9,14 @@ class PostsController < ApplicationController
         render json: Post.all, status: :ok
     end
 
+    def show
+        post = Post.find(params[:id])
+        render json: post, include: :images
+    end
+
     private
     def post_params
-        params.permit(:title, :description, :zipcode, :user_id, :donation_id, :image, pictures: [], )
+        params.permit(:title, :description, :zipcode, :user_id, :donation_id, images: [] )
     end
 
 end
