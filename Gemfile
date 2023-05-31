@@ -15,7 +15,7 @@ gem 'byebug', '~> 11.1', '>= 11.1.3'
 gem 'active_model_serializers'
 
 # Use Postgres as the database for Active Record
-gem "pg"
+gem "pg", "~> 1.1"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
