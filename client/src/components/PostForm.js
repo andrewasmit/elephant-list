@@ -10,7 +10,7 @@ function PostForm() {
   const [newPost, setNewPost] = useState({
     title: "",
     description: "",
-    user_id: user.id,
+    user_id: null,
     zipcode: "",
   });
 
@@ -46,6 +46,7 @@ function PostForm() {
       });
   }
 
+
   // Return JSX
   if (user) {
     return (
@@ -64,7 +65,7 @@ function PostForm() {
                   title: e.target.value,
                   description: newPost.description,
                   zipcode: newPost.zipcode,
-                  user_id: newPost.user_id
+                  user_id: user.id
                 })
               }
             />
@@ -80,7 +81,7 @@ function PostForm() {
                   title: newPost.title,
                   description: e.target.value,
                   zipcode: newPost.zipcode,
-                  user_id: newPost.user_id
+                  user_id: user.id
                 })
               }
             />
@@ -96,7 +97,7 @@ function PostForm() {
                   title: newPost.title,
                   description: newPost.description,
                   zipcode: e.target.value,
-                  user_id: newPost.user_id
+                  user_id: user.id
                 })
               }
             />
