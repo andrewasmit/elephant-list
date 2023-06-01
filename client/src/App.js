@@ -12,16 +12,16 @@ function App() {
 
   const { user } = useSelector(state => state.user)
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  console.log("Current state of user: ", user)
+  // console.log("Current state of user: ", user)
 
   useEffect(() => {
     fetch("/me").then((res) => {
       if (res.ok) {
         res.json().then((data) => dispatch(login(data)));
       } else {
-        dispatch(logout());
+        navigate('/home');
       }
     });
   }, []);

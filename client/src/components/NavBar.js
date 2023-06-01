@@ -1,10 +1,18 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../redux/userSlice';
 
 function NavBar() {
     const navigate= useNavigate();
-    const { user } = useSelector(state=> state.user)
+    const dispatch = useDispatch();
+    const { user } = useSelector(state=> state.user);
+
+    function handleLogout(){
+        fetch('logout',{
+          method: 'DELETE'
+        }).then(dispatch(logout()))
+      }
 
   return (
     <div>
@@ -13,6 +21,7 @@ function NavBar() {
         <button onClick={()=> navigate('/home')}>Home</button>
         <button onClick={()=> navigate('/login')}>Login</button>
         <button onClick={()=> navigate('/posts')}>New Post</button>
+        <button onClick={handleLogout}>Logout</button>
     </div>
   )
 };

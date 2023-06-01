@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { login } from "../redux/userSlice";
+import { useDispatch } from "react-redux";
 
 function SignInForm() {
+  const dispatch = useDispatch();
     const [signInData, setSignInData] = useState({
       username: "",
       password: ""
@@ -15,7 +18,7 @@ function SignInForm() {
                 "Content-Type" : "application/json" 
             }
         }).then(res=>res.json())
-        .then(data=>console.log(data))
+        .then(data=>dispatch(login(data)))
         .catch(err=>console.log(err));
         setSignInData({
           username: "",
