@@ -18,13 +18,10 @@ function PostForm() {
     e.preventDefault();
     const formData = new FormData();
     const formImages = e.target.image.files;
-    formData.append("post[title]", "This is a Test Post");
-    formData.append(
-      "post[description]",
-      "This is a  description of the Test Post"
-    );
-    formData.append("post[zipcode]", "90210");
-    formData.append("post[user_id]", "1");
+    formData.append("post[title]", newPost.title);
+    formData.append("post[description]",newPost.description);
+    formData.append("post[zipcode]", newPost.zipcode);
+    formData.append("post[user_id]", parseInt(newPost.user_id));
 
     for (let i = 0; i < formImages.length; i++) {
       formData.append("post[images][]", formImages[i]);
@@ -38,11 +35,16 @@ function PostForm() {
       body: data,
     })
       .then((res) => res.json())
+      // ADD A DISPATCH FOR POSTS TO ADD THIS RES TO THE COLLECTION*****
       .then((data) => console.log(data))
       .catch((error) => console.log(error));
+      setNewPost({
+        title: "",
+        description: "",
+        user_id: user.id,
+        zipcode: "",
+      });
   }
-
-  console.log(user);
 
   // Return JSX
   if (user) {
@@ -62,6 +64,7 @@ function PostForm() {
                   title: e.target.value,
                   description: newPost.description,
                   zipcode: newPost.zipcode,
+                  user_id: newPost.user_id
                 })
               }
             />
@@ -77,6 +80,7 @@ function PostForm() {
                   title: newPost.title,
                   description: e.target.value,
                   zipcode: newPost.zipcode,
+                  user_id: newPost.user_id
                 })
               }
             />
@@ -92,6 +96,7 @@ function PostForm() {
                   title: newPost.title,
                   description: newPost.description,
                   zipcode: e.target.value,
+                  user_id: newPost.user_id
                 })
               }
             />
