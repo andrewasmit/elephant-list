@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { addNewPost } from "../redux/postSlice";
 
 function PostForm() {
   const imagesRef = useRef([]);
@@ -36,7 +37,7 @@ function PostForm() {
     })
       .then((res) => res.json())
       // ADD A DISPATCH FOR POSTS TO ADD THIS RES TO THE COLLECTION*****
-      .then((data) => console.log(data))
+      .then(data => dispatch(addNewPost(data)))
       .catch((error) => console.log(error));
       setNewPost({
         title: "",

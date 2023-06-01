@@ -15,18 +15,21 @@ function App() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  console.log(posts)
+
   // Fetch user if signed in
   useEffect(() => {
     fetch("/me").then((res) => {
       if (res.ok) {
         res.json().then((data) => dispatch(login(data)));
+        navigate('/home');
       } else {
         navigate('/home');
       }
     });
   }, []);
 
-  // Initial fetch of posts
+  // Initial fetch of all posts (whether you're signed in or not)
   useEffect(()=>{
       fetch('/posts')
       .then(res=>res.json())

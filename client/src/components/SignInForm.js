@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { login } from "../redux/userSlice";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function SignInForm() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
     const [signInData, setSignInData] = useState({
       username: "",
       password: ""
@@ -24,6 +26,7 @@ function SignInForm() {
           username: "",
           password: ""
         });
+        navigate('/home');
     }
 
   return (

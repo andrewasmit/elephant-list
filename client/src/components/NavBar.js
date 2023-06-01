@@ -21,7 +21,9 @@ function NavBar() {
         <button onClick={()=> navigate('/home')}>Home</button>
         <button onClick={()=> navigate('/login')}>Login</button>
         <button onClick={()=> navigate('/posts')}>New Post</button>
-        <button onClick={handleLogout}>Logout</button>
+        { user ? 
+            <button onClick={handleLogout}>Logout</button>
+        : null }
     </div>
   )
 };
