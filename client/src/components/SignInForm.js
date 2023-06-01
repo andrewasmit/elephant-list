@@ -25,6 +25,8 @@ function SignInForm() {
 
 
   return (
+    <div>
+      <h1>SIGN IN PAGE</h1>
     <form onSubmit={signIn}>
       <label>
         Username:
@@ -36,6 +38,7 @@ function SignInForm() {
       </label>
       <input type="submit" value="Submit" />
     </form>
+    </div>
   );
 }
 

@@ -1,7 +1,11 @@
 import { useState, useRef } from "react";
+import { useDispatch } from "react-redux";
+import { logout } from "../redux/userSlice";
+ 
 
 function PostForm() {
   const imagesRef = useRef([]);
+  const dispatch = useDispatch();
 
   function handleUpload(e) {
     e.preventDefault();
@@ -18,9 +22,6 @@ function PostForm() {
     for (let i = 0; i < formImages.length; i++) {
       formData.append("post[images][]", formImages[i]);
     }
-    // for (const pair of formData.entries()) {
-    //   console.log(`${pair[0]}, ${pair[1]}`);
-    // }
     postData(formData);
   }
 
@@ -33,12 +34,19 @@ function PostForm() {
     .catch(error=>console.log(error));
   }
 
+  function handleLogout(){
+    fetch('logout',{
+      method: 'DELETE'
+    }).then(dispatch(logout()))
+  }
+
   return (
     <div>
       <form onSubmit={(e) => handleUpload(e)}>
         <input type="file" name="image" multiple ref={imagesRef} />
         <button type="submit">Upload Post</button>
       </form>
+      <button onClick={handleLogout}>LOGOUT</button>
     </div>
   );
 }
