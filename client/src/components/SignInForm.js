@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 
 function SignInForm() {
-    const [username, setUsername] = useState("")
-    const [password, setPassword] = useState("")
+    const [signInData, setSignInData] = useState({
+      username: "",
+      password: ""
+    })
 
     function signIn(e){
         e.preventDefault();
-        const signInData = {
-            username: username,
-            password: password
-        }
         fetch('/login',{
             method: "POST",
             body: JSON.stringify(signInData),
@@ -19,10 +17,11 @@ function SignInForm() {
         }).then(res=>res.json())
         .then(data=>console.log(data))
         .catch(err=>console.log(err));
-        setUsername("");
-        setPassword("");
+        setSignInData({
+          username: "",
+          password: ""
+        });
     }
-
 
   return (
     <div>
@@ -30,11 +29,27 @@ function SignInForm() {
     <form onSubmit={signIn}>
       <label>
         Username:
-        <input type="text" name="name" value={username} onChange={e=>setUsername(e.target.value)}/>
+        <input 
+          type="text" 
+          name="name" 
+          value={signInData.username} 
+          onChange={e=>setSignInData({
+            username: e.target.value,
+            password: signInData.password
+          })}
+        />
       </label>
       <label>
         Password:
-        <input type="password" name="password" value={password} onChange={e=>setPassword(e.target.value)}/>
+        <input 
+          type="password" 
+          name="password" 
+          value={signInData.password} 
+          onChange={e=>setSignInData({
+            username: signInData.username,
+            password: e.target.value
+          })}        
+        />
       </label>
       <input type="submit" value="Submit" />
     </form>

@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { logout } from "../redux/userSlice";
  
@@ -42,7 +42,8 @@ function PostForm() {
 
   return (
     <div>
-      <form onSubmit={(e) => handleUpload(e)}>
+      <h1>THIS THE PAGE WHERE YOU CAN MAKE A NEW POST</h1>
+      <form onSubmit={ e => handleUpload(e)}>
         <input type="file" name="image" multiple ref={imagesRef} />
         <button type="submit">Upload Post</button>
       </form>
