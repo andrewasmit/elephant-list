@@ -18,8 +18,8 @@ function Donation({ title, description, zipcode, image_url, id, user_id }) {
   const popupMessage = {
     title: "You must be signed in to message post owners",
     buttons: [
-      <button onClick={()=> navigate('/login')} key={1}>Login</button>,
-      <button onClick={()=> navigate('/signup')} key={2}>Signup</button>,
+      <button onClick={()=> navigate('/login')} key={1}>Login to my account</button>,
+      <button onClick={()=> navigate('/signup')} key={2}>No account yet? Signup!</button>,
     ]
   }
 

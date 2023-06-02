@@ -10,14 +10,6 @@ class User < ApplicationRecord
     validates_format_of :email_address, with: URI::MailTo::EMAIL_REGEXP
     validates_uniqueness_of :username, :email_address
 
-
-    # def all_chatrooms
-    #     chatrooms = Chatroom.where(user_a_id: self.id).or(Chatroom.where(user_b_id: self.id))
-    #     chatrooms.map do |chatroom|
-    #         chatroom.messages
-    #     end
-    # end
-
     def reviews
         Review.all.where(reviewed_id: session[:user_id])
     end

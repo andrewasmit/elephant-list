@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import "./App.css";
 import PostForm from "./components/PostForm";
 import SignInForm from "./components/SignInForm";
+import SignUpForm from "./components/SignUpForm";
 import NavBar from "./components/NavBar";
 import HomePage from "./components/HomePage";
 import DonationContainer from "./components/DonationContainer";
@@ -57,6 +58,12 @@ function App() {
           path="/login"
           element={
             <SignInForm />
+          }
+        />
+        <Route
+          path="/signup"
+          element={
+            <SignUpForm />
           }
         />
         <Route

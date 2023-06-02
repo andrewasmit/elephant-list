@@ -3,8 +3,6 @@ import './Popup.css'
 
 function Popup(props) {
 
-  // const buttonsToDisplay = props.popupMessage.buttons.maps()
-
   return (props.trigger) ? (
     <div className='popup'>
         <div className='popup-inner'>
