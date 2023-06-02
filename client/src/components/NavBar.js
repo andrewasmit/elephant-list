@@ -19,6 +19,7 @@ function NavBar() {
         <h1>THIS IS THE NAVBAR</h1>
         {user ? <h2>Welcome, {user.username}!</h2> : null }
         <button onClick={()=> navigate('/home')}>Home</button>
+        <button onClick={()=> navigate('/donations')}>Donations</button>
         <button onClick={()=> navigate('/login')}>Login</button>
         <button onClick={()=> navigate('/posts')}>New Post</button>
         { user ? 

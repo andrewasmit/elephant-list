@@ -3,10 +3,11 @@ import "./App.css";
 import PostForm from "./components/PostForm";
 import SignInForm from "./components/SignInForm";
 import NavBar from "./components/NavBar";
+import HomePage from "./components/HomePage";
+import DonationContainer from "./components/DonationContainer";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { login, logout } from "./redux/userSlice";
-import HomePage from "./components/HomePage";
 import { fetchPosts } from "./redux/postSlice";
 
 function App() {
@@ -14,8 +15,6 @@ function App() {
   const { user } = useSelector(state => state.user)
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  console.log(posts)
 
   // Fetch user if signed in
   useEffect(() => {
@@ -58,6 +57,12 @@ function App() {
           path="/login"
           element={
             <SignInForm />
+          }
+        />
+        <Route
+          path="/donations"
+          element={
+            <DonationContainer />
           }
         />
       </Routes>
