@@ -20,7 +20,7 @@ function NavBar() {
       {user ? <h2>Welcome, {user.username}!</h2> : null}
       <button onClick={() => navigate("/home")}>Home</button>
       <button onClick={() => navigate("/donations")}>Donations</button>
-      <button onClick={() => navigate("/posts")}>New Post</button>
+      { user ? <button onClick={() => navigate("/posts")}>New Post</button> : null }
       { user ? (
         <button onClick={handleLogout}>Logout</button>
       ) : (

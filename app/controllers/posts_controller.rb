@@ -7,7 +7,8 @@ class PostsController < ApplicationController
     end
 
     def index
-        render json: Post.all, status: :ok
+        posts = Post.all.order(created_at: :desc)
+        render json: posts, status: :ok
     end
 
     def show

@@ -5,7 +5,6 @@ import Donation from './Donation'
 function DonationContainer() {
     const { posts } = useSelector(state=>state.posts)
 
-    console.log(posts)
     const postsToDisplay= posts.map(post=>{
         return <Donation 
                     title= {post.title}
