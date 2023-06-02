@@ -28,3 +28,12 @@
   width: 250px;
 }
 
+.donation-card{
+  border: solid 2px blue;
+  padding: 5px;
+  margin: 20px;
+}
+
+.error-list-item{
+  color: red;
+}
