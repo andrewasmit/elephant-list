@@ -4,10 +4,10 @@ import Chatroom from "./Chatroom";
 import SidebarMessages from "./SidebarMessages";
 
 function MessageHome() {
-  const { user } = useSelector((state) => state.user);
+  const { user, chatrooms } = useSelector((state) => state.user);
   const [targetChat, setTargetChat] = useState(0);
 
-  const chatSideIcons = user.all_chatrooms.map((chat, idx) => {
+  const chatSideIcons = chatrooms.map((chat, idx) => {
     return (
       <SidebarMessages
         key={idx}
@@ -18,7 +18,7 @@ function MessageHome() {
     );
   });
 
-  const chatroomToDisplay = user.all_chatrooms
+  const chatroomToDisplay = chatrooms
     .filter((chat) => chat[0].chatroom_id === targetChat)
     .map((chatroom, idx) => {
       return <Chatroom arr={chatroom} chatroom_id={targetChat} key={idx} />

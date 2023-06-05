@@ -4,7 +4,7 @@ import { addMessage } from "../../redux/userSlice";
 
 function Chatbox({ user1_id, user2_id, chatroom_id }) {
   const [message, setMessage] = useState("");
-  const { user } = useSelector(state=>state.user)
+  const { user, chatrooms } = useSelector(state=>state.user)
   const dispatch = useDispatch();
 
   function handleSendMessage(e){

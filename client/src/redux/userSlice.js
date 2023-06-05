@@ -3,22 +3,28 @@ import { createSlice } from '@reduxjs/toolkit'
 export const userSlice = createSlice({
     name: 'user',
     initialState: {
-        user: null
+        user: null,
+        chatrooms: [],
+        reviews: []
     },
     reducers: {
         login: (state, action)=>{ 
             console.log("Redux: Logging in...")
             state.user = action.payload;
+            state.chatrooms = action.payload.all_chatrooms;
+            state.reviews = action.payload.reviews;
         },
         logout: state=>{ 
             console.log("Redux: Logging out...")
             state.user = null;
+            state.chatrooms = [];
+            state.reviews = [];
         },
         addMessage: (state, action)=>{
-            console.log("Redux: adding message to chatroom")
-            state.user.all_chatrooms = [...state.user.all_chatrooms].filter(chatroom=>chatroom[0].chatroom_id === action.payload.chatroom_id).push(action.payload)
-            // newChatroom = [...targetChatroom]
-            // console.log(newChatroom)
+            console.log("Redux: adding message to chatroom", action.payload)
+            const idx = state.chatrooms.findIndex(chatroom=>chatroom[0].chatroom_id === action.payload.chatroom_id)
+            state.chatrooms[idx].push(action.payload)
+            state.chatrooms = state.chatrooms
         }
     }
 })
