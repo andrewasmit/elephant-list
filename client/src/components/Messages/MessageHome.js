@@ -5,8 +5,8 @@ import Chatroom from "./Chatroom";
 function MessageHome() {
   const { user } = useSelector((state) => state.user);
 
-  const chatrooms = user.all_chatrooms.map((chat) => {
-    return <Chatroom key={chat.id} arr={chat.arr} />;
+  const chatrooms = user.all_chatrooms.map((chat, idx) => {
+    return <Chatroom key={idx} arr={chat} />;
   });
 
   console.log(user.all_chatrooms)
