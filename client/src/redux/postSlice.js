@@ -7,11 +7,11 @@ export const postSlice = createSlice({
     },
     reducers: {
         fetchPosts: (state, action)=>{ 
-            "Initial fetch of posts..."
+            "Redux: Initial fetch of posts..."
             state.posts = action.payload;
         },
         addNewPost: (state, action)=>{ 
-            "Adding new post!"
+            "Redux: Adding new post!"
             state.posts = [...state.posts, action.payload];
         }
     }

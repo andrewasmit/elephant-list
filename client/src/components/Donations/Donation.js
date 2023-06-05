@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import Popup from "./Popup/Popup";
+import Popup from "../Popup/Popup";
 import { useNavigate } from "react-router-dom";
 
 function Donation({ title, description, zipcode, image_url, id, user_id }) {

@@ -1,11 +1,12 @@
 import { useSelector, useDispatch } from "react-redux";
 import "./App.css";
 import PostForm from "./components/PostForm";
-import SignInForm from "./components/SignInForm";
-import SignUpForm from "./components/SignUpForm";
+import SignInForm from "./components/Login/SignInForm";
+import SignUpForm from "./components/Login/SignUpForm";
 import NavBar from "./components/NavBar";
 import HomePage from "./components/HomePage";
-import DonationContainer from "./components/DonationContainer";
+import DonationContainer from "./components/Donations/DonationContainer";
+import MessageHome from "./components/Messages/MessageHome";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { login, logout } from "./redux/userSlice";
@@ -70,6 +71,12 @@ function App() {
           path="/donations"
           element={
             <DonationContainer />
+          }
+        />
+        <Route
+          path="/messages"
+          element={
+            <MessageHome />
           }
         />
       </Routes>

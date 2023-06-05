@@ -26,6 +26,9 @@ function NavBar() {
       ) : (
         <button onClick={() => navigate("/login")}>Login</button>
       ) }
+
+      { user ? <button onClick={() => navigate("/messages")}>Messages</button> : null }
+
     </div>
   );
 }

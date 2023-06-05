@@ -7,11 +7,11 @@ export const userSlice = createSlice({
     },
     reducers: {
         login: (state, action)=>{ 
-            console.log("Logging in...")
+            console.log("Redux: Logging in...")
             state.user = action.payload;
         },
         logout: state=>{ 
-            console.log("Logging out...")
+            console.log("Redux: Logging out...")
             state.user = null;
         }
     }

@@ -7,11 +7,11 @@ export const errorSlice = createSlice({
     },
     reducers: {
         addErrors: (state, action)=>{ 
-            console.log("Adding errors from server")
+            console.log("Redux: Adding errors from server")
             state.errors = [...state.errors, action.payload];
         },
         clearErrors: (state)=>{ 
-            console.log("Clearing the errors")
+            console.log("Redux: Clearing the errors")
             state.errors = [];
         }
     }

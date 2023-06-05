@@ -11,7 +11,8 @@ class UserSerializer < ActiveModel::Serializer
             id: message.id,
             body: message.body,
             user_id: message.user_id,
-            recipient_id: message.recipient_id
+            recipient_id: message.recipient_id,
+            read: message.read
           }
         end
     end

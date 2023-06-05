@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { login } from "../redux/userSlice";
+import { login } from "../../redux/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { addErrors, clearErrors } from "../redux/errorSlice";
+import { addErrors, clearErrors } from "../../redux/errorSlice";
 
 
-function SignInForm() {
+function SignUpForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { errors } = useSelector((state) => state.errors);
@@ -13,7 +13,7 @@ function SignInForm() {
     username: "",
     password: "",
     confirm_password: "",
-    email_address: "",
+    email_address: ""
   });
 
   const errorsToDisplay = errors.map((err, idx)=>{
@@ -134,4 +134,4 @@ function SignInForm() {
   );
 }
 
-export default SignInForm;
+export default SignUpForm;

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { login } from "../redux/userSlice";
+import { login } from "../../redux/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { addErrors, clearErrors } from "../redux/errorSlice";
+import { addErrors, clearErrors } from "../../redux/errorSlice";
 
 
 function SignInForm() {
