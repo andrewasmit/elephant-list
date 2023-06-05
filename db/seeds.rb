@@ -66,7 +66,8 @@ Message.create(
     user_id: 1,
     recipient_id: 2,
     body: Faker::Lorem.paragraph,
-    chatroom_id: 1
+    chatroom_id: 1,
+    read: true
 )
 end
 
@@ -75,9 +76,16 @@ Message.create(
     user_id: 2,
     recipient_id: 1,
     body: Faker::Lorem.paragraph,
-    chatroom_id: 1
+    chatroom_id: 1,
+    read: true
 )
 end
+Message.create(
+    user_id: 2,
+    recipient_id: 1,
+    body: Faker::Lorem.paragraph,
+    chatroom_id: 1
+)
 
 
 5.times do
@@ -85,17 +93,33 @@ Message.create(
     user_id: 3,
     recipient_id: 1,
     body: Faker::Lorem.paragraph,
-    chatroom_id: 2
+    chatroom_id: 2,
+    read: true
 )
 end
+
+Message.create(
+    user_id: 3,
+    recipient_id: 1,
+    body: Faker::Lorem.paragraph,
+    chatroom_id: 2
+)
 
 5.times do
 Message.create(
     user_id: 1,
     recipient_id: 3,
     body: Faker::Lorem.paragraph,
-    chatroom_id: 2
+    chatroom_id: 2,
+    read: true
 )
 end
+
+Message.create(
+    user_id: 1,
+    recipient_id: 3,
+    body: Faker::Lorem.paragraph,
+    chatroom_id: 2
+)
 
 puts "Done Seeding! ✅"
