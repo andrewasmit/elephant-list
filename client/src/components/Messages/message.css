@@ -1,3 +1,7 @@
 .message-received{
     background: rgba(0,0,0, .1);
 }
+
+.message-sent{
+    background: lightgreen;
+}

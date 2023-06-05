@@ -3,9 +3,6 @@ import Message from './Message'
 import { useSelector } from 'react-redux'
 
 function Chatroom(props) {
-
-  console.log(props.arr)
-  // const { user } =useSelector(state=>state.user)
   const messagesToDisplay = props.arr.map(msg=>{
     return <Message 
               key={msg.id}
@@ -22,6 +19,6 @@ function Chatroom(props) {
         {messagesToDisplay}
     </div>
   )
-}
+};
 
 export default Chatroom
