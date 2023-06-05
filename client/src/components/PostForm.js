@@ -30,7 +30,7 @@ function PostForm() {
       formData.append("post[images][]", formImages[i]);
     }
     postData(formData);
-    dispatch(clearErrors())
+    dispatch(clearErrors());
   }
 
   function postData(data) {
@@ -51,6 +51,10 @@ function PostForm() {
         data.errors.map(err=> dispatch(addErrors(err)))
       })
     });
+  }
+  function handleNavigate(url){
+    dispatch(clearErrors())
+    navigate(url)
   }
 
   const errorsToDisplay = errors.map((err, idx)=>{
@@ -116,16 +120,14 @@ function PostForm() {
           <input type="file" name="image" multiple ref={imagesRef} />
           <button type="submit">Upload Post</button>
         </form>
-        <ul>
-          { errorsToDisplay.length > 0 ? errorsToDisplay : null}
-        </ul>
+        { errorsToDisplay.length > 0 ? errorsToDisplay : null}
       </div>
     );
   } else
     return (
       <div>
         <h3>You must be logged in to make a post</h3>
-        <button onClick={() => navigate("/login")}>
+        <button onClick={() => handleNavigate("/login")}>
           Don't have an account?
         </button>
       </div>

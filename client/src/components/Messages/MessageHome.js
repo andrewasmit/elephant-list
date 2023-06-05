@@ -20,8 +20,8 @@ function MessageHome() {
 
   const chatroomToDisplay = user.all_chatrooms
     .filter((chat) => chat[0].chatroom_id === targetChat)
-    .map((chatroom) => {
-      return <Chatroom arr={chatroom} chatroom_id={targetChat} />
+    .map((chatroom, idx) => {
+      return <Chatroom arr={chatroom} chatroom_id={targetChat} key={idx} />
     });
 
   return (

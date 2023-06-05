@@ -5,3 +5,29 @@
 .message-sent{
     background: lightgreen;
 }
+
+#chatbox{
+    background: orchid;
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    /* height:10vw; */
+    /* padding-top: 5px; */
+    padding-bottom: 35px;
+}
+
+.sidebar-messages{
+    height: 100vh;
+    width: 150px;
+    display: block;
+    /* position: sticky; */
+    top: 0px;
+    float: left;
+    margin-top: 0px;
+    padding-top: 40px;
+    background-color: lightblue;
+}
+
+.chatroom{
+    margin-left: 250px;
+}

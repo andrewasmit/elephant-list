@@ -13,9 +13,15 @@ export const userSlice = createSlice({
         logout: state=>{ 
             console.log("Redux: Logging out...")
             state.user = null;
+        },
+        addMessage: (state, action)=>{
+            console.log("Redux: adding message to chatroom")
+            state.user.all_chatrooms = [...state.user.all_chatrooms].filter(chatroom=>chatroom[0].chatroom_id === action.payload.chatroom_id).push(action.payload)
+            // newChatroom = [...targetChatroom]
+            // console.log(newChatroom)
         }
     }
 })
 
-export const { login, logout } = userSlice.actions; 
+export const { login, logout, addMessage } = userSlice.actions; 
 export default userSlice.reducer;

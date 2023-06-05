@@ -1,5 +1,5 @@
 import React from 'react'
-import './SidebarMessages.css'
+// import './message.css'
 import { useNavigate } from "react-router-dom";
 
 function SidebarMessages(props) {
@@ -10,11 +10,11 @@ function SidebarMessages(props) {
     navigate(`/messages/${props.chatroom_id}`)
   }
   return (
-    <div id="sidebar-messages">
+    <div className="sidebar-messages">
         <h3>This should be on the side</h3>
         <button onClick={handleChatClick}>Go to this chatroom</button>
     </div>
   )
-}
+};
 
 export default SidebarMessages
