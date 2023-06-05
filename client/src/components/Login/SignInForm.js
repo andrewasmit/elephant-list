@@ -46,6 +46,11 @@ function SignInForm() {
         dispatch(clearErrors());
     }
 
+    function handleNavigate(url){
+      clearForm()
+      navigate(url);
+    }
+
   return (
     <div>
       <h1>SIGN IN PAGE</h1>
@@ -76,7 +81,7 @@ function SignInForm() {
       </label>
       <input type="submit" value="Submit" />
     </form>
-    <button onClick={()=>navigate('/signup')}>No account yet? Sign up!</button>
+    <button onClick={()=>handleNavigate('/signup')}>No account yet? Sign up!</button>
     {errorsToDisplay}
     </div>
   );

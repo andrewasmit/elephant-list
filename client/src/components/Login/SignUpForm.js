@@ -52,6 +52,11 @@ function SignUpForm() {
       dispatch(clearErrors());
   }
 
+  function handleNavigate(url){
+    clearForm()
+    navigate(url);
+  }
+
 //  Return of JSX
   return (
     <div>
@@ -126,7 +131,7 @@ function SignUpForm() {
       <button onClick={() => clearForm()}>
         Reset form
       </button>
-      <button onClick={() => navigate("/login")}>
+      <button onClick={() => handleNavigate("/login")}>
         Already have an account? Log in!
       </button>
       {errorsToDisplay}
