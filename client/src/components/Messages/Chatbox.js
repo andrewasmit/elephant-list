@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addMessage } from "../../redux/userSlice";
 
-function Chatbox({ user1_id, user2_id, chatroom_id, message, setMessage }) {
+function Chatbox({ user1_id, user2_id, chatroom_id }) {
   const { user, chatrooms } = useSelector(state=>state.user)
+  const [message, setMessage] = useState("")
   const dispatch = useDispatch();
 
   function handleSendMessage(e){
