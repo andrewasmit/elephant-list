@@ -53,6 +53,7 @@ function PostForm() {
       })
     });
   }
+
   function handleNavigate(url){
     dispatch(clearErrors())
     navigate(url)
