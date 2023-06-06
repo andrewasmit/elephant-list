@@ -13,6 +13,12 @@ class MessagesController < ApplicationController
         render json: message, status: :accepted
     end
 
+    def destroy
+        message = Message.find(params[:id])
+        message.destroy
+        head :no_content
+    end
+
 
     private
     def message_params
