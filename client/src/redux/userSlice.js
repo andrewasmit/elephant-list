@@ -21,20 +21,27 @@ export const userSlice = createSlice({
             state.reviews = [];
         },
         addMessage: (state, action)=>{
-            console.log("Redux: adding message to chatroom")
+            console.log("Redux: adding message to chat")
             const idx = state.chatrooms.findIndex(chatroom=>chatroom[0].chatroom_id === action.payload.chatroom_id)
             state.chatrooms[idx].push(action.payload)
             state.chatrooms = state.chatrooms
         },
         deleteMessage: (state, action)=>{
-            console.log("Redux: Removing message from chatroom")
+            console.log("Redux: Deleting message from chat")
             const chatroom = state.chatrooms.filter(cr=> cr[0].chatroom_id === action.payload[0])[0]
             const idx = chatroom.findIndex(msg=>msg.id === action.payload[1])
             chatroom.splice(idx, 1)
+            state.chatrooms = state.chatrooms
+        },
+        editMessage: (state, action)=>{
+            console.log("Redux: Editing message");
+            const chatroom = state.chatrooms.filter(cr=> cr[0].chatroom_id === action.payload[0])[0]
+            const idx = chatroom.findIndex(msg=>msg.id === action.payload[1].id)
+            chatroom.splice(idx, 1, action.payload[1])
             state.chatrooms = state.chatrooms
         }
     }
 })
 
-export const { login, logout, addMessage, deleteMessage } = userSlice.actions; 
+export const { login, logout, addMessage, deleteMessage, editMessage } = userSlice.actions; 
 export default userSlice.reducer;

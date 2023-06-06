@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import Message from "./Message";
 import Chatbox from "./Chatbox";
 
 function Chatroom(props) {
-  const [crudMsgId, setCrudMsgId] = useState(null);
 
   const messagesToDisplay = props.arr.map((msg) => {
     return (
@@ -14,7 +13,6 @@ function Chatroom(props) {
         body={msg.body}
         user_id={msg.user_id}
         chatroom_id={msg.chatroom_id}
-        setCrudMsgId={setCrudMsgId}
       />
     );
   });

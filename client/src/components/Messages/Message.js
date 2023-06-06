@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./message.css";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteMessage } from "../../redux/userSlice";
+import { deleteMessage, editMessage } from "../../redux/userSlice";
 
 function Message(props) {
   const { user } = useSelector((state) => state.user);
@@ -9,12 +9,22 @@ function Message(props) {
   const [edit, setEdit] = useState(false);
   const [input, setInput] = useState(props.body);
 
-  function handleEditMessageClick() {
-    setEdit(true);
-    props.setCrudMsgId(props.id);
-  }
+  function handleEditMessage(e) {
+    e.preventDefault();
+    fetch(`/messages/${props.id}`,{
+      method: "PATCH",
+      body: JSON.stringify({body:input}),
+      headers: {
+        "Content-Type" : "application/json"
+      }
+    })
+    .then(res=>res.json())
+    .then(data=>dispatch(editMessage([props.chatroom_id, data])))
+    setEdit(false);
+  };
 
-  function handleDeleteMessageClick() {
+
+  function handleDeleteMessage() {
     fetch(`/messages/${props.id}`, {
       method: "DELETE",
     }).then(dispatch(deleteMessage([props.chatroom_id, props.id])));
@@ -34,7 +44,7 @@ function Message(props) {
 
       {/* Changing to input form if editing message */}
       {edit ? (
-        <form>
+        <form onSubmit={handleEditMessage}>
           <input
             type="text"
             value={input}
@@ -52,10 +62,10 @@ function Message(props) {
       { edit ? null : 
       <div>
         {props.user_id == user.id ? (
-          <button onClick={handleEditMessageClick}>Edit</button>
+          <button onClick={()=>setEdit(true)}>Edit</button>
         ) : null}
         {props.user_id == user.id ? (
-          <button onClick={handleDeleteMessageClick}>Delete</button>
+          <button onClick={handleDeleteMessage}>Delete</button>
         ) : null}
       </div>
       }
