@@ -25,7 +25,7 @@ class ChatroomsController < ApplicationController
         author = User.find(session[:user_id])
         recipient = User.find(params[:recipient_id])
         chatroom = Chatroom.where(user_a_id: author.id, user_b_id:recipient.id).or(Chatroom.where(user_a_id: recipient.id, user_b_id: author.id))
-        render json: { error: "You already have a chatroom associated with this user. You can not create a new one" }, status: :unauthorized unless chatroom.length != 1
+        render json: { error: "You already have a chatroom associated with this user." }, status: :unauthorized unless chatroom.length != 1
     end
 
 end

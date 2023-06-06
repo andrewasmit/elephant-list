@@ -1,36 +1,88 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Popup from "../Popup/Popup";
 import { useNavigate } from "react-router-dom";
+import { addErrors, clearErrors } from "../../redux/errorSlice";
+import { addTargetChat } from "../../redux/chatroomSlice";
 
 function Donation({ title, description, zipcode, image_url, id, user_id }) {
-  const { user } = useSelector((state) => state.user);
+  const { user, chatrooms } = useSelector((state) => state.user);
+  const targetChat = useSelector(state=>state.chatroom)
   const [popupTrigger, setPopupTrigger] = useState(false);
   const [popupMsg, setPopupMsg] = useState({});
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
+
+  function handlePopUp(obj) {
+    setPopupTrigger(true);
+    setPopupMsg(obj);
+  }
+
   function handleMessageUser() {
-    if(user && user.id !== user_id){
-      console.log("ID of post owner: ", user_id);
-    } else if(user && user.id === user_id){
-      // console.log("This is your post dummy butt")
+    // const targetChatroom = chatrooms.filter(chatroom=> chatroom[0].recipient_id === user_id || chatroom[0].user_id === user_id)[0]
+    // setChatroomId(targetChatroom[0].chatroom_id)
+    if (user && user.id !== user_id) {
       handlePopUp({
-        title: "You are the owner of this post."
-      })
+        title: "Message this post's owner",
+        buttons: [
+          <form onSubmit={handleSendMessage} key={1}>
+            <label>
+              Message:
+              <input type="text" />
+            </label>
+            <input type="submit" />
+          </form>,
+        ],
+      });
+    } else if (user && user.id === user_id) {
+      handlePopUp({
+        title: "You are the owner of this post.",
+      });
     } else
       handlePopUp({
         title: "You must be signed in to message post owners",
         buttons: [
-          <button onClick={()=> navigate('/login')} key={1}>Login to my account</button>,
-          <button onClick={()=> navigate('/signup')} key={2}>No account yet? Signup!</button>,
-        ]
+          <button onClick={() => navigate("/login")} key={1}>
+            Login to my account
+          </button>,
+          <button onClick={() => navigate("/signup")} key={2}>
+            No account yet? Signup!
+          </button>,
+        ],
       });
   }
 
-
-  function handlePopUp(obj){
-    setPopupTrigger(true);
-    setPopupMsg(obj);
+  function handleSendMessage(e) {
+    e.preventDefault();
+    const msg = {
+      body: e.target[0].value,
+      user_id: user.id,
+      recipient_id: user_id
+    }
+    fetch(`/chatrooms`,{
+      method: "POST",
+      body: JSON.stringify(msg),
+      headers: {
+        "Content-Type" : "application/json"
+      }
+    })
+    .then((res) => {
+      if(res.ok){
+          // res.json().then((data) => dispatch((data)))
+          // clearForm();
+          navigate(`/messages`)
+      } else
+      res.json().then(data=>{
+        const targetChatroom = chatrooms.filter(chatroom=> chatroom[0].recipient_id === user_id || chatroom[0].user_id === user_id)[0]
+        dispatch(addTargetChat(targetChatroom[0].chatroom_id));
+          dispatch(addErrors(data.error))
+          setTimeout(()=>{
+            navigate(`/messages/${targetChat}`);
+            dispatch(clearErrors);
+          }, 2000);
+        })
+    });
   }
 
   return (
@@ -53,7 +105,11 @@ function Donation({ title, description, zipcode, image_url, id, user_id }) {
           })}
 
       <button onClick={handleMessageUser}>Message Post Owner</button>
-      <Popup trigger={popupTrigger} setPopupTrigger={setPopupTrigger} popupMessage={popupMsg}/>
+      <Popup
+        trigger={popupTrigger}
+        setPopupTrigger={setPopupTrigger}
+        popupMessage={popupMsg}
+      />
     </div>
   );
 }

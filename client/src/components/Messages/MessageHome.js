@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 import Chatroom from "./Chatroom";
 import SidebarMessages from "./SidebarMessages";
 
 function MessageHome() {
-  const { user, chatrooms } = useSelector((state) => state.user);
-  const [targetChat, setTargetChat] = useState(0);
+  const { chatrooms } = useSelector((state) => state.user);
+  const { targetChat } = useSelector((state) => state.chatroom);
 
   const chatSideIcons = chatrooms.map((chat, idx) => {
     return (
       <SidebarMessages
         key={idx}
         arr={chat}
-        setTargetChat={setTargetChat}
         chatroom_id={chat[0].chatroom_id}
       />
     );

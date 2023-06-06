@@ -1,13 +1,15 @@
 import React from 'react'
-// import './message.css'
 import { useNavigate } from "react-router-dom";
+import { addTargetChat } from '../../redux/chatroomSlice';
+import { useDispatch } from 'react-redux';
 
 function SidebarMessages(props) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   function handleChatClick(){
-    props.setTargetChat(props.chatroom_id)  
-    navigate(`/messages/${props.chatroom_id}`)
+    dispatch(addTargetChat(props.chatroom_id));
+    navigate(`/messages/${props.chatroom_id}`);
   }
   return (
     <div className="sidebar-messages">
