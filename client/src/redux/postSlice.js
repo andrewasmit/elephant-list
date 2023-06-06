@@ -12,7 +12,7 @@ export const postSlice = createSlice({
         },
         addNewPost: (state, action)=>{ 
             "Redux: Adding new post!"
-            state.posts = [...state.posts, action.payload];
+            state.posts = [action.payload, ...state.posts];
         }
     }
 });

@@ -46,6 +46,7 @@ function PostForm() {
           user_id: user.id,
           zipcode: "",
         });
+        handleNavigate('/donations');
       } else
       res.json().then(data=>{
         data.errors.map(err=> dispatch(addErrors(err)))
