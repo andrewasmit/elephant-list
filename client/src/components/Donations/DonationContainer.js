@@ -17,8 +17,11 @@ function DonationContainer() {
                     key={post.id} 
                     user_id={post.user_id}
                     id={post.id} 
+                    donation_id={post.donation_id}
                 />
     })
+
+    console.log(posts)
 
     function handleSearch(e){
       e.preventDefault();

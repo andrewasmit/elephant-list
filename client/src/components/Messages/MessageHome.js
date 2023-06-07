@@ -33,7 +33,6 @@ function MessageHome() {
 
   return (
     <div>
-      <h2>This is the Messages HomePage</h2>
       {chatSideIcons}
       {chatroomToDisplay}
     </div>

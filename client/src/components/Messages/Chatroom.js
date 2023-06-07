@@ -1,8 +1,10 @@
 import React from "react";
 import Message from "./Message";
 import Chatbox from "./Chatbox";
+import { useSelector } from "react-redux";
 
 function Chatroom(props) {
+  const { targetUsername } = useSelector(state=>state.chatroom)
 
   const messagesToDisplay = props.arr.map((msg) => {
     return (
@@ -20,7 +22,7 @@ function Chatroom(props) {
   return (
     <div>
       <div className="chatroom">
-        <h2>This is a chatroom that will be filled with messages</h2>
+        <h2>Your conversation with {targetUsername}</h2>
         {messagesToDisplay}
       </div>
       <Chatbox

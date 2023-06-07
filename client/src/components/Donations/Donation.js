@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Popup from "../Popup/Popup";
+import './donation.css'
 import { useNavigate } from "react-router-dom";
 import { addErrors, clearErrors } from "../../redux/errorSlice";
 import { addTargetChat } from "../../redux/chatroomSlice";
 import { startChatroom } from "../../redux/userSlice";
 
-function Donation({ title, description, zipcode, image_url, id, user_id }) {
+function Donation({ title, description, zipcode, image_url, id, user_id, donation_id }) {
   const { user, chatrooms } = useSelector((state) => state.user);
   const targetChat = useSelector(state=>state.chatroom)
   const [popupTrigger, setPopupTrigger] = useState(false);
@@ -84,7 +85,8 @@ function Donation({ title, description, zipcode, image_url, id, user_id }) {
   }
 
   return (
-    <div id={id} className="donation-card">
+    <div id={id} className="donation-card" >
+      <div className={ donation_id === null ? "" : "donation-claimed"}>
       <h3>{title}</h3>
       <h5>{description}</h5>
       <h6>Located at: {zipcode}</h6>
@@ -102,12 +104,15 @@ function Donation({ title, description, zipcode, image_url, id, user_id }) {
             );
           })}
 
+      { donation_id === null ? 
       <button onClick={handleMessageUser}>I'm interested!</button>
+      : <h3>This post has been donated</h3> }
       <Popup
         trigger={popupTrigger}
         setPopupTrigger={setPopupTrigger}
         popupMessage={popupMsg}
       />
+      </div>
     </div>
   );
 }
