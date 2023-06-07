@@ -1,8 +1,8 @@
 import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { addNewPost } from "../redux/postSlice";
-import { addErrors, clearErrors } from "../redux/errorSlice";
+import { addNewPost } from "../../redux/postSlice";
+import { addErrors, clearErrors } from "../../redux/errorSlice";
 
 function PostForm() {
   const imagesRef = useRef([]);

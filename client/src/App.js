@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import "./App.css";
-import PostForm from "./components/PostForm";
+import PostForm from "./components/Donations/PostForm";
 import SignInForm from "./components/Login/SignInForm";
 import SignUpForm from "./components/Login/SignUpForm";
 import NavBar from "./components/NavBar";

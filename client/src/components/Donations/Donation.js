@@ -23,13 +23,10 @@ function Donation({ title, description, zipcode, image_url, id, user_id }) {
   function handleMessageUser() {
     if (user && user.id !== user_id) {
       handlePopUp({
-        title: "Message this post's owner",
+        title: "Message the owner of this post",
         buttons: [
           <form onSubmit={handleSendMessage} key={1}>
-            <label>
-              Message:
-              <input type="text" />
-            </label>
+            <input type="text" />
             <input type="submit" />
           </form>,
         ],
@@ -105,7 +102,7 @@ function Donation({ title, description, zipcode, image_url, id, user_id }) {
             );
           })}
 
-      <button onClick={handleMessageUser}>Message Post Owner</button>
+      <button onClick={handleMessageUser}>I'm interested!</button>
       <Popup
         trigger={popupTrigger}
         setPopupTrigger={setPopupTrigger}

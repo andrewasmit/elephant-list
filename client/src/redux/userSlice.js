@@ -5,7 +5,8 @@ export const userSlice = createSlice({
     initialState: {
         user: null,
         chatrooms: [],
-        reviews: []
+        reviews: [],
+        allUsers: []
     },
     reducers: {
         login: (state, action)=>{ 
@@ -43,9 +44,13 @@ export const userSlice = createSlice({
         startChatroom: (state, action) =>{
             console.log("Redux: Creating a chatroom")
             state.chatrooms = [...state.chatrooms, action.payload]
+        },
+        fetchAllUsers:(state, action)=>{
+            console.log("Redux: Fetching all users");
+            state.allUsers = action.payload
         }
     }
 })
 
-export const { login, logout, addMessage, deleteMessage, editMessage, startChatroom } = userSlice.actions; 
+export const { login, logout, addMessage, deleteMessage, editMessage, startChatroom, fetchAllUsers } = userSlice.actions; 
 export default userSlice.reducer;

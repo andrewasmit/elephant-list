@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit'
 export const chatroomSlice = createSlice({
     name: 'chatroom',
     initialState: {
-        targetChat: null
+        targetChat: null,
+        recipientUser: null
     },
     reducers: {
         addTargetChat: (state, action)=>{ 
@@ -13,9 +14,12 @@ export const chatroomSlice = createSlice({
         clearTargetChat: (state)=>{ 
             console.log("Redux: Clearing target chatroom")
             state.targetChat = null;
+        },
+        addRecipientUser: (state, action)=>{
+            state.recipientUser = action.payload
         }
     }
 });
 
-export const { addTargetChat, clearTargetChat } = chatroomSlice.actions; 
+export const { addTargetChat, clearTargetChat, addRecipientUser } = chatroomSlice.actions; 
 export default chatroomSlice.reducer;
