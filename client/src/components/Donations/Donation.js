@@ -4,6 +4,7 @@ import Popup from "../Popup/Popup";
 import { useNavigate } from "react-router-dom";
 import { addErrors, clearErrors } from "../../redux/errorSlice";
 import { addTargetChat } from "../../redux/chatroomSlice";
+import { startChatroom } from "../../redux/userSlice";
 
 function Donation({ title, description, zipcode, image_url, id, user_id }) {
   const { user, chatrooms } = useSelector((state) => state.user);
@@ -20,8 +21,6 @@ function Donation({ title, description, zipcode, image_url, id, user_id }) {
   }
 
   function handleMessageUser() {
-    // const targetChatroom = chatrooms.filter(chatroom=> chatroom[0].recipient_id === user_id || chatroom[0].user_id === user_id)[0]
-    // setChatroomId(targetChatroom[0].chatroom_id)
     if (user && user.id !== user_id) {
       handlePopUp({
         title: "Message this post's owner",
@@ -69,18 +68,20 @@ function Donation({ title, description, zipcode, image_url, id, user_id }) {
     })
     .then((res) => {
       if(res.ok){
-          // res.json().then((data) => dispatch((data)))
-          // clearForm();
-          navigate(`/messages`)
+          res.json().then((data) => {
+            dispatch(startChatroom(data))
+            dispatch(addTargetChat(data[0].chatroom_id))
+            navigate(`/messages/${data[0].chatroom_id}`)
+          });
       } else
       res.json().then(data=>{
         const targetChatroom = chatrooms.filter(chatroom=> chatroom[0].recipient_id === user_id || chatroom[0].user_id === user_id)[0]
         dispatch(addTargetChat(targetChatroom[0].chatroom_id));
           dispatch(addErrors(data.error))
           setTimeout(()=>{
+            dispatch(clearErrors());
             navigate(`/messages/${targetChat}`);
-            dispatch(clearErrors);
-          }, 2000);
+          }, 1500);
         })
     });
   }

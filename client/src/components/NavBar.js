@@ -12,6 +12,7 @@ function NavBar() {
     fetch("logout", {
       method: "DELETE",
     }).then(dispatch(logout()));
+    navigate('/donations');
   }
 
   return (

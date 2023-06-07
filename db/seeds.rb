@@ -51,6 +51,13 @@ Post.create(
 )
 end
 
+Post.create(
+    title: Faker::Commerce.material,
+    description: Faker::Lorem.paragraph,
+    zipcode: Faker::Address.zip_code,
+    user_id: 3
+)
+
 Chatroom.create(
     user_a_id: 1,
     user_b_id: 2

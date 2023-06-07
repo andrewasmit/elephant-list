@@ -39,9 +39,13 @@ export const userSlice = createSlice({
             const idx = chatroom.findIndex(msg=>msg.id === action.payload[1].id)
             chatroom.splice(idx, 1, action.payload[1])
             state.chatrooms = state.chatrooms
+        },
+        startChatroom: (state, action) =>{
+            console.log("Redux: Creating a chatroom")
+            state.chatrooms = [...state.chatrooms, action.payload]
         }
     }
 })
 
-export const { login, logout, addMessage, deleteMessage, editMessage } = userSlice.actions; 
+export const { login, logout, addMessage, deleteMessage, editMessage, startChatroom } = userSlice.actions; 
 export default userSlice.reducer;
