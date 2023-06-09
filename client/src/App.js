@@ -20,7 +20,6 @@ function App() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  console.log(user)
 
   // Fetch user if signed in
   useEffect(() => {
