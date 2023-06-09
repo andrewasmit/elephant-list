@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username, :email_address, :all_chatrooms
+  attributes :id, :username, :email_address, :all_chatrooms, :donations_claimed
   has_many :posts
   has_many :reviews
 
@@ -24,6 +24,10 @@ class UserSerializer < ActiveModel::Serializer
     reviewed_donations.map do |donation|
         Review.find(donation.review_id)
     end
+  end
+
+  def donations_claimed
+    Donation.where(recipient_id: self.object.id)
   end
 
 end

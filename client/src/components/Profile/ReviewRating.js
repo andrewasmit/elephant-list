@@ -8,16 +8,19 @@ function ReviewRating() {
 
     function findAverageRating(arr){
         const reviewRatings = arr.map(review=>review.rating)
-        const sum = reviewRatings.reduce((initial, accum)=> initial + accum, 0 )
-        const avg = Math.floor(sum/arr.length)
-        return avg;
+        if (reviewRatings.length > 0){
+            const sum = reviewRatings.reduce((initial, accum)=> initial + accum, 0 )
+            return Math.floor(sum/arr.length)
+        } else {
+            return 0;
+        }
     };
 
     useEffect(()=>{
         setAverageRating(findAverageRating(user.reviews));
     },[])
 
-    const reviewStars = [...Array(averageRating)].map( ()=> "⭐" ).join("");
+   const stars = [...Array(averageRating)].map( ()=> "⭐" ).join("")
     
     const reviewsToDisplay = user.reviews.map(review=>{
         return <Review 
@@ -31,7 +34,8 @@ function ReviewRating() {
   return (
     <div>
         <h2>{user.username}</h2>
-        <h3>Average Rating: {averageRating}/5 {reviewStars} out of {user.reviews.length} reviews</h3>
+        { user.reviews.length === 0 ? <h3>This account has not yet been reviewed</h3> :
+        <h3>Average Rating: {averageRating}/5 {stars} out of {user.reviews.length} reviews</h3> }
         <h3>Reviews</h3>
         {reviewsToDisplay}
     </div>

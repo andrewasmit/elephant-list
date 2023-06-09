@@ -20,8 +20,7 @@ function App() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  console.log("All posts: ", posts)
-  console.log("All users: ", allUsers)
+  console.log(user)
 
   // Fetch user if signed in
   useEffect(() => {
