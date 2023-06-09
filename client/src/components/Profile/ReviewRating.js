@@ -20,7 +20,7 @@ function ReviewRating() {
         setAverageRating(findAverageRating(user.reviews));
     },[])
 
-   const stars = [...Array(averageRating)].map( ()=> "⭐" ).join("")
+    const stars = [...Array(averageRating)].map( ()=> "⭐" ).join("")
     
     const reviewsToDisplay = user.reviews.map(review=>{
         return <Review 
