@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Message from "./Message";
 import Chatbox from "./Chatbox";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Popup from "../Popup/Popup";
+import { addDonationToPost } from "../../redux/postSlice";
 
 function Chatroom(props) {
   const { targetUsername } = useSelector(state=>state.chatroom);
   const { user } = useSelector(state=>state.user);
   const [donateSelect, setDonateSelect] = useState("**Select an Item to Donate**");
-  const [popup, setPopup] = useState(false)
+  const [popup, setPopup] = useState(false);
+  const dispatch = useDispatch();
 
 
   useEffect(()=>{
@@ -61,7 +63,7 @@ function Chatroom(props) {
       }
     })
     .then(res=>res.json())
-    .then(data=>console.log(data))
+    .then(data=>dispatch(addDonationToPost(data)))
   }
 
 

@@ -34,7 +34,7 @@ function SidebarMessages(props) {
       setRecipient(allUsers.filter(user=>user.id === targetId)[0].username)
       dispatch(addTargetUsername(allUsers.filter(user=>user.id === targetId)[0].username))
     }
-  }, []);
+  }, [allUsers]);
   
 
   return (

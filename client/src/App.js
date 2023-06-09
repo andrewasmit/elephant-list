@@ -15,11 +15,13 @@ import { fetchPosts } from "./redux/postSlice";
 import { fetchAllUsers } from "./redux/userSlice";
 
 function App() {
-  // const { posts } = useSelector(state=>state.posts)
-  const { user } = useSelector(state => state.user)
+  const { posts } = useSelector(state=>state.posts)
+  const { user, allUsers } = useSelector(state => state.user)
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  console.log("All posts: ", posts)
+  console.log("All users: ", allUsers)
 
   // Fetch user if signed in
   useEffect(() => {
