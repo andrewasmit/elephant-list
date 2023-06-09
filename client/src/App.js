@@ -1,23 +1,26 @@
-import { useSelector, useDispatch } from "react-redux";
 import "./App.css";
 import PostForm from "./components/Donations/PostForm";
 import SignInForm from "./components/Login/SignInForm";
 import SignUpForm from "./components/Login/SignUpForm";
 import NavBar from "./components/NavBar";
 import HomePage from "./components/HomePage";
-import MyProfile from "./redux/MyProfile";
+import Profile from "./components/Profile";
 import DonationContainer from "./components/Donations/DonationContainer";
 import MessageHome from "./components/Messages/MessageHome";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { login, logout } from "./redux/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "./redux/userSlice";
 import { fetchPosts } from "./redux/postSlice";
+import { fetchAllUsers } from "./redux/userSlice";
 
 function App() {
-  const { posts } = useSelector(state=>state.posts)
+  // const { posts } = useSelector(state=>state.posts)
   const { user } = useSelector(state => state.user)
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  console.log(user)
 
   // Fetch user if signed in
   useEffect(() => {
@@ -37,6 +40,13 @@ function App() {
       .then(res=>res.json())
       .then(data=>dispatch(fetchPosts(data)))
   }, []);
+
+  // Initial fetch of all users
+  useEffect(()=>{
+    fetch('/users')
+    .then(res=>res.json())
+    .then(userArray=>dispatch(fetchAllUsers(userArray)))
+  },[])
 
 
  // Return of JSX (dependant on Login of User-State)
@@ -81,9 +91,9 @@ function App() {
           }
         />
         <Route
-          path="/my_posts/*"
+          path="/profile/*"
           element={
-            <MyProfile />
+            <Profile />
           }
         />
       </Routes>

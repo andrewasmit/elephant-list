@@ -29,7 +29,7 @@ function NavBar() {
       ) }
 
       { user ? <button onClick={() => navigate("/messages")}>Messages</button> : null }
-      { user ? <button onClick={() => navigate("/my_posts")}>My Posts</button> : null }
+      { user ? <button onClick={() => navigate(`/profile/${user.id}`)}>My Profile</button> : null }
 
     </div>
   );

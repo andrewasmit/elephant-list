@@ -21,7 +21,6 @@ function DonationContainer() {
                 />
     })
 
-    console.log(posts)
 
     function handleSearch(e){
       e.preventDefault();
