@@ -4,7 +4,7 @@ import SignInForm from "./components/Login/SignInForm";
 import SignUpForm from "./components/Login/SignUpForm";
 import NavBar from "./components/NavBar";
 import HomePage from "./components/HomePage";
-import Profile from "./components/Profile";
+import Profile from "./components/Profile/Profile";
 import DonationContainer from "./components/Donations/DonationContainer";
 import MessageHome from "./components/Messages/MessageHome";
 import { Routes, Route, useNavigate } from "react-router-dom";
