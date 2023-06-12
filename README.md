@@ -8,7 +8,7 @@ That is why Elephant-List was born. The mission is to connect those who have the
 
 The name Elephant-List comes from the social construct of the elephant herd; working together as a community to raise each other's young. You can read more about the elephant social construct [HERE](https://herd.org.za/blog/elephants-their-families-the-importance-of-social-structures-within-a-herd/), but I feel the moral of it can be summed up in the quote below...
 
-"Due to the high level of responsibility it takes to raise each individual calf, all of the mothers within the herd ensure that every young elephant is raised with the utmost love, guidance, protection, support and care."
+_"Due to the high level of responsibility it takes to raise each individual calf, all of the mothers within the herd ensure that every young elephant is raised with the utmost love, guidance, protection, support and care."_
 
 ## Overview
 
@@ -29,6 +29,6 @@ It is an interface designed to build a community for parents to donate quality i
 
 - On the Donations page, if you see a post you are interested in, click the "I'm Interested" button in order to message the owner of the post. However, you must be signed in to do so. Don't worry though! If you are not signed in, you will be prompted to do so OR create your account.
 
--In the messages component of this app, you can navigate between different chatrooms of users. If both parties agree, you can use the dropdown menu to officailly donate the item to that user, prompting them to write a review for your profile and update the post so that other users know the item is now "off the market"
+- In the messages component of this app, you can navigate between different chatrooms of users. If both parties agree, you can use the dropdown menu to officailly donate the item to that user, prompting them to write a review for your profile and update the post so that other users know the item is now "off the market"
 
--Reviews help future donation accepters know that it is safe to interact with this individual. So, please help contribute to the validity of each user when you accept a donation!
+- Reviews help future donation accepters know that it is safe to interact with this individual. So, please help contribute to the validity of each user when you accept a donation!
