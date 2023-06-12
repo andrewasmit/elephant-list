@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: elephant_list_production
-  username: elephant_list
-  password: <%= ENV["ELEPHANT_LIST_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
