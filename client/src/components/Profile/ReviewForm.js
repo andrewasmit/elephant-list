@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { addErrors, clearErrors } from '../../redux/errorSlice';
+import { createReview } from '../../redux/userSlice';
 
 function ReviewForm(props) {
     const dispatch = useDispatch();
@@ -37,7 +38,7 @@ function ReviewForm(props) {
         .then(res=>{
             if(res.ok){
                 res.json()
-                .then(data=>console.log(data))
+                .then(data=>dispatch(createReview(data)))
                 clearReview();
             } else
             res.json().then(data=>{

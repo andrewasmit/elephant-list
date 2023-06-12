@@ -48,9 +48,15 @@ export const userSlice = createSlice({
         fetchAllUsers:(state, action)=>{
             console.log("Redux: Fetching all users");
             state.allUsers = action.payload
+        },
+        createReview:(state, action)=>{
+            console.log("Redux: Adding review");
+            const targetDonation = state.user.donations_claimed.filter(d=>d.id === action.payload.donation_id)[0]
+            targetDonation.review_id = action.payload.id 
+            state.user = state.user 
         }
     }
 })
 
-export const { login, logout, addMessage, deleteMessage, editMessage, startChatroom, fetchAllUsers } = userSlice.actions; 
+export const { login, logout, addMessage, deleteMessage, editMessage, startChatroom, fetchAllUsers, createReview } = userSlice.actions; 
 export default userSlice.reducer;
