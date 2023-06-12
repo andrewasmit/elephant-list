@@ -31,7 +31,6 @@ function Chatroom(props) {
     );
   });
 
-
   const postOptions = props.user.posts.map(p=>{
     if(p.donation_id ===null) {
       return <option value={p.id}>{p.title}</option>
