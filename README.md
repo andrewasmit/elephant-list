@@ -1,4 +1,4 @@
-# Elephant List 🐘
+# Elephant-List 🐘
 
 ## Purpose and Goals
 
