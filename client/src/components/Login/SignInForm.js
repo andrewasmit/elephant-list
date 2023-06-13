@@ -94,7 +94,7 @@ function SignInForm() {
             })
           }
         />
-        <Button onClick={signIn} variant="contained">Contained</Button>
+        <Button onClick={signIn} variant="contained">Login</Button>
         </Box>
 
         <Button onClick={() => handleNavigate("/signup")} variant="text">
