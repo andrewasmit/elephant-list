@@ -3,7 +3,7 @@ import PostForm from "./components/Donations/PostForm";
 import SignInForm from "./components/Login/SignInForm";
 import SignUpForm from "./components/Login/SignUpForm";
 import NavBar from "./components/NavBar";
-import HomePage from "./components/HomePage";
+import HomePage from "./components/HomePage/HomePage";
 import Profile from "./components/Profile/Profile";
 import DonationContainer from "./components/Donations/DonationContainer";
 import MessageHome from "./components/Messages/MessageHome";
