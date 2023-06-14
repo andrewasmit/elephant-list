@@ -43,7 +43,6 @@ function DonationContainer() {
 
   return (
     <div>
-        <Typography variant="h4" component="h3">THIS IS WHERE TO DISPLAY ALL DONATIONS</Typography >
         {/* <form onSubmit={handleSearch}>
           <label>
             Search:
@@ -53,6 +52,7 @@ function DonationContainer() {
         </form>
         { filter === "" ? null : <button onClick={()=>resetSearch()}>Show All Posts</button> } */}
 
+<Typography variant="h4" component="h3">Search Donations</Typography >
 
         <Grid container spacing={2} id="search-bar">
           <Box

@@ -1,7 +1,7 @@
 import React from "react";
 import ClaimedDonation from "./ClaimedDonation";
 import { useSelector } from "react-redux";
-import { Grid } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 
 function ClaimedContainer() {
   const { user } = useSelector((state) => state.user);
@@ -17,12 +17,9 @@ function ClaimedContainer() {
     );
   });
 
-//   console.log(claimedDonations)
-// console.log(user.donations_claimed)
-
   return (
     <div>
-      <h2>This is where you will display your claimed Donations</h2>
+      <Typography variant="h4">Your claimed Donations</Typography>
       <Grid container >
         {claimedDonations}
       </Grid>

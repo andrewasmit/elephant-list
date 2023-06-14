@@ -1,3 +1,10 @@
 .claimed-donation{
-    background: red;
+    /* background: red; */
+    margin:10px;
+    padding: 5px;
+}
+
+.review-card{
+    margin:10px;
+    padding: 5px;
 }

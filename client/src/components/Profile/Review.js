@@ -1,16 +1,23 @@
-import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
-import { Button, Paper, Grid, Typography, Rating, Collapse } from '@mui/material'
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import {
+  Button,
+  Paper,
+  Grid,
+  Typography,
+  Rating,
+  Collapse,
+} from "@mui/material";
 
-function Review({ body, authorId, rating}) {
-    const { allUsers } = useSelector(state=>state.user)
-    const [showHide, setShowHide] = useState(false)
+function Review({ body, authorId, rating }) {
+  const { allUsers } = useSelector((state) => state.user);
+  const [showHide, setShowHide] = useState(false);
 
-    const author = allUsers.filter(u=> u.id === authorId)[0].username
+  const author = allUsers.filter((u) => u.id === authorId)[0].username;
 
-    function handleShowHide(){
-        setShowHide(!showHide);
-    }
+  function handleShowHide() {
+    setShowHide(!showHide);
+  }
 
   return (
     <Grid item xs={12} md={6} lg={4}>
@@ -20,10 +27,12 @@ function Review({ body, authorId, rating}) {
         <Collapse in={showHide}>
           <Typography variant="p">{body}</Typography>
         </Collapse>
-          <Button onClick={handleShowHide} variant="outlined" >{ showHide ? "Hide Review" : "See full review" }</Button> 
+        <Button onClick={handleShowHide} variant="outlined">
+          {showHide ? "Hide Review" : "See full review"}
+        </Button>
       </Paper>
     </Grid>
-  )
+  );
 }
 
-export default Review
+export default Review;
