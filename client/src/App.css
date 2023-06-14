@@ -30,3 +30,15 @@
 #footer{
   background:lightblue;
 }
+
+#navbar{
+  background:lightblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#welcome-message{
+  justify-content:right;
+  align-items: end;
+}

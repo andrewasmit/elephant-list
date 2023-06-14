@@ -68,6 +68,7 @@ function SignInForm() {
         }}
         noValidate
         autoComplete="off"
+        onSubmit={signIn}
       >
         <TextField
           required
@@ -94,7 +95,7 @@ function SignInForm() {
             })
           }
         />
-        <Button onClick={signIn} variant="contained">Login</Button>
+        <Button variant="contained" type="submit">Login</Button>
         </Box>
 
         <Button onClick={() => handleNavigate("/signup")} variant="text">
