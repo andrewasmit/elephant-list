@@ -3,6 +3,7 @@ import PostForm from "./components/Donations/PostForm";
 import SignInForm from "./components/Login/SignInForm";
 import SignUpForm from "./components/Login/SignUpForm";
 import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
 import HomePage from "./components/HomePage/HomePage";
 import Profile from "./components/Profile/Profile";
 import DonationContainer from "./components/Donations/DonationContainer";
@@ -96,6 +97,7 @@ function App() {
           }
         />
       </Routes>
+      <Footer />
     </div>
   );
 };

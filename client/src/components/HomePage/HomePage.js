@@ -36,7 +36,8 @@ function HomePage() {
 
 
         <div id="home-welcome">
-          <Typography variant="h4" component="h5">This is a subtitle slogan about Elephant-List</Typography>
+          <Typography variant="h4" component="h5">"We admire elephants in part because they demonstrate what we consider the finest human traits: empathy, self-awareness, and social intelligence."</Typography>
+          <Typography variant="h6" component="h6">-Graydon Carter</Typography>
         </div>
 
 

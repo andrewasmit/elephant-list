@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import Donation from './Donation'
+import { Typography, Grid, Button, ButtonGroup } from "@mui/material";
 
 function DonationContainer() {
     const { posts } = useSelector(state=>state.posts)
@@ -9,16 +10,17 @@ function DonationContainer() {
 
     const postsToDisplay= posts.filter(post=>post.title.toLowerCase().includes(filter.toLowerCase()))
     .map(post=>{
-        return <Donation 
+        return <Grid item md={12} lg={6} xl={4} key={post.id}> 
+                  <Donation 
                     title= {post.title}
                     description={post.description} 
                     zipcode={post.zipcode} 
                     image_url={post.image_url} 
-                    key={post.id} 
                     user_id={post.user_id}
                     id={post.id} 
                     donation_id={post.donation_id}
-                />
+                  />
+                </Grid>
     })
 
 
@@ -42,8 +44,12 @@ function DonationContainer() {
           </label>
           <input type="submit"></input>
         </form>
-        { filter ==="" ? null : <button onClick={()=>resetSearch()}>Show All Posts</button> }
-        {postsToDisplay}
+        { filter === "" ? null : <button onClick={()=>resetSearch()}>Show All Posts</button> }
+
+        <Grid container spacing={2} >
+          {postsToDisplay}
+        </Grid>
+        
     </div>
   )
 }
