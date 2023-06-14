@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import Review from './Review'
+import { Grid, Typography } from '@mui/material'
 
 function ReviewRating() {
     const { user } = useSelector(state=>state.user)
@@ -20,25 +21,25 @@ function ReviewRating() {
         setAverageRating(findAverageRating(user.reviews));
     },[])
 
-    
-    const stars = [...Array(averageRating)].map( ()=> "⭐" ).join("")
-    
     const reviewsToDisplay = user.reviews.map(review=>{
         return <Review 
                     key={review.id}
                     body ={review.body} 
                     authorId={review.user_id}
                     rating={review.rating}
-               />
+                />
     })
 
   return (
     <div>
-        <h2>{user.username}</h2>
-        { user.reviews.length === 0 ? <h3>This account has not yet been reviewed</h3> :
-        <h3>Average Rating: {averageRating}/5 {stars} out of {user.reviews.length} reviews</h3> }
-        <h3>Reviews</h3>
-        {reviewsToDisplay}
+        <Typography variant="h3" >{user.username}</Typography >
+        { user.reviews.length === 0 ? <Typography variant="h5" >This account has not yet been reviewed</Typography > :
+        <Typography variant="h5">Average Rating: {averageRating}/5 ⭐s out of {user.reviews.length} reviews</Typography > }
+
+        <Typography variant="h5">My Reviews</Typography >
+        <Grid container >
+            {reviewsToDisplay}
+        </Grid>
     </div>
   )
 };
