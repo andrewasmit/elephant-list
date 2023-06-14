@@ -1,35 +1,63 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Popup from "../Popup/Popup";
-import './donation.css'
+import "./donation.css";
 import { useNavigate } from "react-router-dom";
 import { addErrors, clearErrors } from "../../redux/errorSlice";
 import { addTargetChat } from "../../redux/chatroomSlice";
 import { startChatroom } from "../../redux/userSlice";
+import { Paper, Typography, Grid, Button, ImageList, ImageListItem, Box, TextField } from "@mui/material";
 
-function Donation({ title, description, zipcode, image_url, id, user_id, donation_id }) {
+function Donation({
+  title,
+  description,
+  zipcode,
+  image_url,
+  id,
+  user_id,
+  donation_id,
+}) {
   const { user, chatrooms } = useSelector((state) => state.user);
-  const targetChat = useSelector(state=>state.chatroom)
+  const targetChat = useSelector((state) => state.chatroom);
   const [popupTrigger, setPopupTrigger] = useState(false);
   const [popupMsg, setPopupMsg] = useState({});
+  const [msgBody, setMsgBody] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
 
   function handlePopUp(obj) {
     setPopupTrigger(true);
     setPopupMsg(obj);
   }
 
+  console.log(msgBody)
+
   function handleMessageUser() {
     if (user && user.id !== user_id) {
       handlePopUp({
         title: "Message the owner of this post",
         buttons: [
-          <form onSubmit={handleSendMessage} key={1}>
-            <input type="text" />
-            <input type="submit" />
-          </form>,
+        //   <Box
+        //       component="form"
+        //       sx={{
+        //         "& .MuiTextField-root": { m: 1, width: "25ch" },
+        //       }}
+        //       noValidate
+        //       autoComplete="off"
+        //     >
+        //       <TextField
+        //         id="outlined"
+        //         label="Message"
+        //         type="text"
+        //         value={msgBody}
+        //         onChange={e=>setMsgBody(e.target.value)}
+        //       />
+        //       <Button variant="outlined" onClick={handleSendMessage}>Send Message</Button>
+        // </Box>
+        <form onSubmit={handleSendMessage} key={1}>
+          <input type="text" />
+          <input type="submit" />
+      </form>,
         ],
       });
     } else if (user && user.id === user_id) {
@@ -40,80 +68,104 @@ function Donation({ title, description, zipcode, image_url, id, user_id, donatio
       handlePopUp({
         title: "You must be signed in to message post owners",
         buttons: [
-          <button onClick={() => navigate("/login")} key={1}>
+          <Button onClick={() => navigate("/login")} key={1} variant="contained">
             Login to my account
-          </button>,
-          <button onClick={() => navigate("/signup")} key={2}>
+          </Button>,
+          <Button onClick={() => navigate("/signup")} key={2} variant="outlined" >
             No account yet? Signup!
-          </button>,
+          </Button>,
         ],
       });
   }
 
   function handleSendMessage(e) {
     e.preventDefault();
+    console.log(e.target)
     const msg = {
       body: e.target[0].value,
       user_id: user.id,
-      recipient_id: user_id
-    }
-    fetch(`/chatrooms`,{
+      recipient_id: user_id,
+    };
+    fetch(`/chatrooms`, {
       method: "POST",
       body: JSON.stringify(msg),
       headers: {
-        "Content-Type" : "application/json"
-      }
-    })
-    .then((res) => {
-      if(res.ok){
-          res.json().then((data) => {
-            dispatch(startChatroom(data))
-            dispatch(addTargetChat(data[0].chatroom_id))
-            navigate(`/messages/${data[0].chatroom_id}`)
-          });
+        "Content-Type": "application/json",
+      },
+    }).then((res) => {
+      if (res.ok) {
+        res.json().then((data) => {
+          dispatch(startChatroom(data));
+          dispatch(addTargetChat(data[0].chatroom_id));
+          navigate(`/messages/${data[0].chatroom_id}`);
+        });
       } else
-      res.json().then(data=>{
-        const targetChatroom = chatrooms.filter(chatroom=> chatroom[0].recipient_id === user_id || chatroom[0].user_id === user_id)[0]
-        dispatch(addTargetChat(targetChatroom[0].chatroom_id));
-          dispatch(addErrors(data.error))
-          setTimeout(()=>{
+        res.json().then((data) => {
+          const targetChatroom = chatrooms.filter(
+            (chatroom) =>
+              chatroom[0].recipient_id === user_id ||
+              chatroom[0].user_id === user_id
+          )[0];
+          dispatch(addTargetChat(targetChatroom[0].chatroom_id));
+          dispatch(addErrors(data.error));
+          setTimeout(() => {
             dispatch(clearErrors());
             navigate(`/messages/${targetChat}`);
           }, 1500);
-        })
+        });
     });
   }
 
   return (
-    <div id={id} className="donation-card" >
-      <div className={ donation_id === null ? "" : "donation-claimed"}>
-      <h3>{title}</h3>
-      <h5>{description}</h5>
-      <h6>Located at: {zipcode}</h6>
+    <Paper elevation={12} className="donation-card" >
+    <Grid item xs={12} md={6} lg={12} id={id} >
+      <div className={donation_id === null ? "" : "donation-claimed"}>
+        <Typography variant="h4">{title}</Typography>
+        <Typography variant="p">{description}</Typography>
+        <Typography variant="subtitle1">Zipcode: {zipcode}</Typography>
 
-      {image_url === null
-        ? null
-        : image_url.map((img, idx) => {
-            return (
+        {/* {image_url === null
+          ? null
+          : image_url.map((img, idx) => {
+              return (
+                <img
+                  src={img}
+                  alt="image of post items"
+                  className="post-image-card"
+                  key={idx}
+                />
+              );
+            })} */}
+
+        { image_url === null ? null :
+        <ImageList sx={{ width: 550, height: 450 }} cols={image_url.length < 3 ? image_url.length : 3 } rowHeight={20}>
+          {image_url.map((img, idx) => (
+            <ImageListItem key={idx}>
               <img
                 src={img}
-                alt="image of post items"
-                className="post-image-card"
-                key={idx}
+                // srcSet={`${img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                alt={title}
+                loading="lazy"
               />
-            );
-          })}
+            </ImageListItem>
+          ))}
+        </ImageList> }
 
-      { donation_id === null ? 
-      <button onClick={handleMessageUser}>I'm interested!</button>
-      : <h3>This post has been donated</h3> }
-      <Popup
-        trigger={popupTrigger}
-        setPopupTrigger={setPopupTrigger}
-        popupMessage={popupMsg}
-      />
+
+
+        {donation_id === null ? (
+          <Button onClick={handleMessageUser} variant="outlined" >I'm interested!</Button>
+        ) : (
+          <h3>This post has been donated</h3>
+        )}
+        <Popup
+          trigger={popupTrigger}
+          setPopupTrigger={setPopupTrigger}
+          popupMessage={popupMsg}
+        />
       </div>
-    </div>
+    </Grid>
+    </Paper>
   );
 }
 

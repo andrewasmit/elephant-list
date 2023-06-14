@@ -1,7 +1,14 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import Donation from './Donation'
-import { Typography, Grid, Button, ButtonGroup } from "@mui/material";
+import { Box,
+  TextField,
+  Fab,
+  Typography,
+  Button,
+  Grid
+} from "@mui/material";
+import NavigationIcon from "@mui/icons-material/Navigation";
 
 function DonationContainer() {
     const { posts } = useSelector(state=>state.posts)
@@ -36,15 +43,52 @@ function DonationContainer() {
 
   return (
     <div>
-        <h1>THIS IS WHERE TO DISPLAY ALL DONATIONS</h1>
-        <form onSubmit={handleSearch}>
+        <Typography variant="h4" component="h3">THIS IS WHERE TO DISPLAY ALL DONATIONS</Typography >
+        {/* <form onSubmit={handleSearch}>
           <label>
             Search:
             <input type="text"  value={search}  onChange={e=>setSearch(e.target.value)}/>
           </label>
           <input type="submit"></input>
         </form>
-        { filter === "" ? null : <button onClick={()=>resetSearch()}>Show All Posts</button> }
+        { filter === "" ? null : <button onClick={()=>resetSearch()}>Show All Posts</button> } */}
+
+
+        <Grid container spacing={2} id="search-bar">
+          <Box
+            component="form"
+            sx={{
+              "& .MuiTextField-root": { m: 1, width: "25ch" },
+            }}
+            noValidate
+            autoComplete="off"
+            onSubmit={handleSearch}
+          >
+            <Grid item xs={12}>
+              <TextField
+                id="outlined"
+                label="Search"
+                value={search}  
+                onChange={e=>setSearch(e.target.value)}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Fab variant="extended" type="submit">
+                <NavigationIcon sx={{ mr: .5 }} />
+                Search
+              </Fab>
+            </Grid>
+          
+           
+          <Grid item xs={12}>
+          { filter === "" ? null :
+            <Button variant="text" onClick={() => resetSearch()}>
+              Show all posts
+            </Button> }
+          </Grid>
+          </Box>
+        </Grid>
+        
 
         <Grid container spacing={2} >
           {postsToDisplay}

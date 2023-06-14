@@ -2,6 +2,7 @@ import React from 'react'
 import './Popup.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { clearErrors } from '../../redux/errorSlice'
+import { Typography } from '@mui/material';
 
 function Popup(props) {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ function Popup(props) {
   return (props.trigger) ? (
     <div className='popup'>
         <div className='popup-inner'>
-            <h3>{props.popupMessage.title}</h3>
+            <Typography variant="h5">{props.popupMessage.title}</Typography >
             {props.popupMessage.buttons}
             <button className='close-popup-btn' onClick={handleClosePopUp}>Close</button>
             {errorsToDisplay}
