@@ -2,13 +2,16 @@ import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { addErrors, clearErrors } from '../../redux/errorSlice';
 import { createReview } from '../../redux/userSlice';
+import { Typography, Button, Rating, Box, TextField } from '@mui/material';
 
 function ReviewForm(props) {
     const dispatch = useDispatch();
     const { user } = useSelector(state=>state.user);
     const { errors } = useSelector(state=>state.errors);
     const [body, setBody] = useState("");
-    const [rating, setRating] = useState("**Choose Rating**");
+    const [rating, setRating] = useState(0);
+
+    console.log(rating)
 
     const errorsToDisplay = errors.map((err, idx)=>{
         return <li key={idx} className="error-list-item">{err}</li>
@@ -56,8 +59,8 @@ function ReviewForm(props) {
 
   return (
     <div>
-        <h3>Write a review for this user</h3>
-        <form onSubmit={handleSubmitReview}>
+        {/* <Typography variant="h5">Write a review for this user</Typography > */}
+        {/* <form onSubmit={handleSubmitReview}>
             <label>
                 Review: 
                 <input type="text" value={body} onChange={e=>setBody(e.target.value)}/>
@@ -71,9 +74,38 @@ function ReviewForm(props) {
                 <option value={5}>5 - ⭐⭐⭐⭐⭐</option>
             </select>
             <input type="submit" />
-        </form>
+        </form> */}
+
+        <Box
+            component="form"
+            sx={{
+            "& .MuiTextField-root": { m: 1, width: "25ch" },
+            }}
+            noValidate
+            autoComplete="off"
+            onSubmit={handleSubmitReview}
+        >
+            <TextField
+                id="outlined-required"
+                multiline
+                rows={3}
+                label="Review"
+                value={body}
+                onChange={(e) =>setBody(e.target.value)}
+            />
+
+        <Typography component="legend">Rating</Typography>
+        <Rating
+            name="simple-controlled"
+            value={rating}
+            onChange={(event, newValue) => {
+            setRating(newValue);
+            }}
+        />
+        <Button variant="contained" type="submit" >Submit Review for {props.reviewUsername}</Button>
+    </Box>
         {errorsToDisplay}
-        <button onClick={()=>clearReview()}>Discard Review</button>
+        <Button variant="text" onClick={()=>clearReview()}>Discard Review</Button>
     </div>
   )
 }
