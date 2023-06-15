@@ -50,16 +50,17 @@ function NavBar() {
           <Tab label="Home" {...a11yProps(0)} onClick={() => navigate("/home")} />
           <Tab label="Donations" {...a11yProps(1)} onClick={() => navigate("/donations")} />
           {user ? <Tab label="Messages" {...a11yProps(2)} onClick={() => navigate("/messages")} /> : null}
-          {user ? <Tab label="Make a New Post" {...a11yProps(3)} onClick={() => navigate("/posts")} /> : null}
-          {user ? <Tab label="My Profile" {...a11yProps(4)} onClick={() => navigate(`/profile/${user.id}`)} /> : null}
+          {/* {user ? <Tab label="Make a New Post" {...a11yProps(4)} onClick={() => navigate("/posts")} /> : null} */}
+          {user ? <Tab label="My Profile" {...a11yProps(3)} onClick={() => navigate(`/profile/${user.id}`)} /> : null}
         </Tabs>
       </Box>
-      {user ? <Typography variant="h5" id="welcome-message" >Welcome, {user.username}!</Typography > : null}
+      <br></br>
       {user ? (
         <Button onClick={handleLogout} variant="outlined" color="secondary">Logout</Button>
       ) : (
         <Button onClick={() => navigate("/login")} variant="outlined" color="secondary">Login</Button>
       )}
+      { user ? <Typography variant="h5" id="welcome-message" className="welcome-nav">Welcome, {user.username}!</Typography > : null}
     </div>
   );
 }

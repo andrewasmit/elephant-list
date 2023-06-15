@@ -44,7 +44,7 @@ function Message(props) {
     <Paper elevation={2} sx={{ bgcolor: props.user_id === user.id ? "lightgreen" : "lightgray"  }}>
 
       <div className="message-header">
-        <h4 >{props.user_id === user.id ? `${props.username}` : `${user.username}`}</h4>
+        <h4 >{props.user_id !== user.id ? `${props.username}` : `${user.username}`}</h4>
         { edit === false && props.user_id === user.id ? 
         <div>
           <Fab color="primary" size="small" onClick={()=>setEdit(true)} className="msg-icon">

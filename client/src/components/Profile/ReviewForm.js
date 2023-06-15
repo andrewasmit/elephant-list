@@ -102,6 +102,7 @@ function ReviewForm(props) {
             setRating(newValue);
             }}
         />
+        <br></br>
         <Button variant="contained" type="submit" >Submit Review for {props.reviewUsername}</Button>
     </Box>
         {errorsToDisplay}

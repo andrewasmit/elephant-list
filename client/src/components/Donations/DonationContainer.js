@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom';
 import Donation from './Donation'
 import { Box,
   TextField,
@@ -9,11 +10,13 @@ import { Box,
   Grid
 } from "@mui/material";
 import NavigationIcon from "@mui/icons-material/Navigation";
+import AddIcon from '@mui/icons-material/Add';
 
 function DonationContainer() {
     const { posts } = useSelector(state=>state.posts)
     const [search, setSearch] = useState("");
     const [filter, setFilter] = useState("");
+    const navigate = useNavigate();
 
     const postsToDisplay= posts.filter(post=>post.title.toLowerCase().includes(filter.toLowerCase()))
     .map(post=>{
@@ -52,9 +55,9 @@ function DonationContainer() {
         </form>
         { filter === "" ? null : <button onClick={()=>resetSearch()}>Show All Posts</button> } */}
 
-<Typography variant="h4" component="h3">Search Donations</Typography >
+{/* <Typography variant="h4" component="h3">Search Donations</Typography > */}
 
-        <Grid container spacing={2} id="search-bar">
+        <Grid container spacing={2} id="search-bar" className='search-bar'>
           <Box
             component="form"
             sx={{
@@ -73,7 +76,7 @@ function DonationContainer() {
               />
             </Grid>
             <Grid item xs={12}>
-              <Fab variant="extended" type="submit">
+              <Fab variant="extended" type="submit" sx={{ bgcolor: 'white' }} >
                 <NavigationIcon sx={{ mr: .5 }} />
                 Search
               </Fab>
@@ -89,6 +92,12 @@ function DonationContainer() {
           </Box>
         </Grid>
         
+        <Grid item xs={12}>
+            <Fab variant="extended" sx={{ bgcolor: 'lightblue' }} onClick={()=>navigate('/posts')} >
+              <AddIcon sx={{ mr: 1 }} />
+              Make a New Post
+            </Fab>
+        </Grid>
 
         <Grid container spacing={2} >
           {postsToDisplay}

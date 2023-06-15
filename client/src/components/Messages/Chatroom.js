@@ -9,13 +9,13 @@ import { Box, Toolbar, Typography, Button, FormControl, InputLabel, Select, Menu
 function Chatroom(props) {
   const { targetUsername } = useSelector(state=>state.chatroom);
   const { user } = useSelector(state=>state.user);
-  const [donateSelect, setDonateSelect] = useState("**Select an Item to Donate**");
+  const [donateSelect, setDonateSelect] = useState(null);
   const [popup, setPopup] = useState(false);
   const dispatch = useDispatch();
 
 
   useEffect(()=>{
-    setDonateSelect("**Select an Item to Donate**")
+    setDonateSelect(null)
   }, [targetUsername])
 
 
@@ -48,7 +48,6 @@ function Chatroom(props) {
 
 
   function handleDonateItem(){
-    console.log("In form: ", donateSelect) 
     setPopup(false);
     const recipient = props.arr[0].user_id === user.id ? props.arr[0].recipient_id : props.arr[0].user_id
     const newDonation = {
@@ -64,6 +63,7 @@ function Chatroom(props) {
     })
     .then(res=>res.json())
     .then(data=>dispatch(addDonationToPost(data)))
+    setDonateSelect(null);
   }
 
 

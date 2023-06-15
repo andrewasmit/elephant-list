@@ -143,7 +143,6 @@ function Donation({
             <ImageListItem key={idx}>
               <img
                 src={img}
-                // srcSet={`${img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
                 alt={title}
                 loading="lazy"
               />

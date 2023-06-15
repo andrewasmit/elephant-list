@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addNewPost } from "../../redux/postSlice";
 import { addErrors, clearErrors } from "../../redux/errorSlice";
+import { Typography } from "@mui/material";
+import { Box, TextField, Button } from "@mui/material";
 
 function PostForm() {
   const imagesRef = useRef([]);
@@ -59,18 +61,27 @@ function PostForm() {
     navigate(url)
   }
 
+  function resetPost(){
+    dispatch(clearErrors())
+    setNewPost({
+      title: "",
+      description: "",
+      user_id: user.id,
+      zipcode: "",
+    });
+    handleNavigate('/donations')
+  }
+
   const errorsToDisplay = errors.map((err, idx)=>{
     return <li key={idx} className="error-list-item">{err}</li>
   })
 
 
   // Return JSX
-  if (user) {
     return (
       <div>
-        <h1>THIS THE PAGE WHERE YOU CAN MAKE A NEW POST</h1>
-        <h4>Create New Post</h4>
-        <form onSubmit={(e) => handleUpload(e)}>
+        <Typography variant="h3" className="new-post-header">Create a New Post</Typography >
+        {/* <form onSubmit={(e) => handleUpload(e)}>
           <label>
             Title:
             <input
@@ -121,19 +132,77 @@ function PostForm() {
           </label>
           <input type="file" name="image" multiple ref={imagesRef} />
           <button type="submit">Upload Post</button>
-        </form>
+        </form> */}
+
+        <Box
+          component="form"
+          sx={{
+            "& .MuiTextField-root": { m: 1, width: "25ch" },
+          }}
+          noValidate
+          autoComplete="off"
+          onSubmit={e=>handleUpload(e)}
+        >
+          <TextField
+            required
+            id="outlined-required"
+            label="Title"
+            name="title"
+            value={newPost.title}
+            onChange={(e) =>
+              setNewPost({
+                title: e.target.value,
+                description: newPost.description,
+                zipcode: newPost.zipcode,
+                user_id: user.id,
+              })
+            }
+          />
+          <br></br>
+          <TextField
+            required
+            id="outlined-required"
+            multiline
+            rows={3}
+            label="Description"
+            name="description"
+            value={newPost.description}
+            onChange={(e) =>
+              setNewPost({
+                title: newPost.title,
+                description: e.target.value,
+                zipcode: newPost.zipcode,
+                user_id: user.id,
+              })
+            }
+          />
+          <br></br>
+          <TextField
+            required
+            id="outlined-required"
+            label="Zipcode"
+            value={newPost.zipcode}
+              onChange={(e) =>
+                setNewPost({
+                  title: newPost.title,
+                  description: newPost.description,
+                  zipcode: e.target.value,
+                  user_id: user.id,
+                })
+              }
+          />
+          <br></br>
+          <input type="file" name="image" multiple ref={imagesRef} className="file-upload"/>
+          <br></br>
+          <Button variant="contained" type="submit" sx={{ m: 2 }}>Create Post</Button>
+          <br></br>
+          <Button variant="text" onClick={resetPost} >Discard New Post</Button>
+
+        </Box>
+
         { errorsToDisplay.length > 0 ? errorsToDisplay : null}
       </div>
     );
-  } else
-    return (
-      <div>
-        <h3>You must be logged in to make a post</h3>
-        <button onClick={() => handleNavigate("/login")}>
-          Don't have an account?
-        </button>
-      </div>
-    );
-}
+  } 
 
 export default PostForm;
