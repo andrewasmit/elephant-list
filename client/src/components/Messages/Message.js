@@ -38,18 +38,19 @@ function Message(props) {
     setInput(props.body);
   }
 
+
   return (
     <div className={props.user_id === user.id ? "message-sent" : "message-received"} >
-    <Paper elevation={2}>
+    <Paper elevation={2} sx={{ bgcolor: props.user_id === user.id ? "lightgreen" : "lightgray"  }}>
 
       <div className="message-header">
         <h4 >{props.user_id === user.id ? `${props.username}` : `${user.username}`}</h4>
         { edit === false && props.user_id === user.id ? 
         <div>
-          <Fab color="primary" size="small" onClick={()=>setEdit(true)}>
+          <Fab color="primary" size="small" onClick={()=>setEdit(true)} className="msg-icon">
             <EditIcon />
           </Fab>
-          <Fab color="primary" size="small" onClick={handleDeleteMessage}>
+          <Fab color="primary" size="small" onClick={handleDeleteMessage} className="msg-icon">
             <DeleteForeverIcon />
           </Fab>
         </div>
@@ -58,11 +59,11 @@ function Message(props) {
 
     {/* Changing to input form if editing message */}
     { edit ? 
-    <div>
+    <div className="edit-msg-box">
       <Box
         component="form"
         sx={{
-          "& .MuiTextField-root": { m: 1, width: "25ch" },
+          "& .MuiTextField-root": { m: 1, width: "75ch" },
         }}
         noValidate
         autoComplete="off"
@@ -72,11 +73,16 @@ function Message(props) {
           required
           label="Message"
           multiline
-          rows={3}
+          rows={2}
           value={input}
           onChange={(e) =>setInput(e.target.value)}
         />
-        <Button variant="outlined" type="submit">Submit</Button>
+        <Button 
+          variant="outlined" 
+          type="submit" 
+          sx={{"& .MuiTextField-root": { m: 1, width: "75ch" },}}>
+            Submit
+        </Button>
       </Box>        
       <Button variant="text" onClick={resetEdit}>Discard Edit Message</Button>
     </div>

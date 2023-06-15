@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addMessage } from "../../redux/userSlice";
+import { Box, TextField, Button, Typography } from "@mui/material";
 
 function Chatbox({ user1_id, user2_id, chatroom_id }) {
   const { user, chatrooms } = useSelector(state=>state.user)
@@ -29,15 +30,32 @@ function Chatbox({ user1_id, user2_id, chatroom_id }) {
 
   return (
     <div id="chatbox">
-      <h1>This is the chatbox</h1>
-      <form onSubmit={handleSendMessage}>
-        <label>
-          {" "}
-          Text:
-          <input type="text" name="title" value={message} onChange={e=>setMessage(e.target.value)} />
-        </label>
-        <input type="submit" />
-      </form>
+      <Typography variant="h3">Chatbox</Typography >
+      <Box
+        component="form"
+        sx={{
+          "& .MuiTextField-root": { m: 1, width: "75ch" },
+        }}
+        noValidate
+        autoComplete="off"
+        onSubmit={handleSendMessage}
+      >
+        <TextField
+          required
+          label="Message"
+          multiline
+          rows={2}
+          value={message} 
+          onChange={e=>setMessage(e.target.value)}
+          sx={{ bgcolor: "white"  }}
+        />
+        <Button 
+          variant="outlined" 
+          type="submit" 
+          sx={{"& .MuiTextField-root": { m: 1, width: "75ch" }, bgcolor: "white" }}>
+            Send
+        </Button>
+      </Box>
     </div>
   );
 }
