@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import Review from './Review'
-import { Grid, Typography } from '@mui/material'
+import { Grid, Rating, Typography } from '@mui/material'
 
 function ReviewRating() {
     const { user } = useSelector(state=>state.user)
@@ -34,7 +34,10 @@ function ReviewRating() {
     <div>
         <Typography variant="h3" >{user.username}</Typography >
         { user.reviews.length === 0 ? <Typography variant="h5" >This account has not yet been reviewed</Typography > :
-        <Typography variant="h5">Average Rating: {averageRating}/5 ⭐s out of {user.reviews.length} reviews</Typography > }
+        <div className='rating-block'> 
+            <Typography variant="h5">Average Rating (out of {user.reviews.length} reviews): </Typography > 
+            <Rating name="read-only" value={averageRating} readOnly />
+        </div> }
 
         <Typography variant="h5">My Reviews</Typography >
         <Grid container >
