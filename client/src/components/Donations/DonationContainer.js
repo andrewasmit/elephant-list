@@ -93,10 +93,11 @@ function DonationContainer() {
         </Grid>
         
         <Grid item xs={12}>
+        { filter !== "" ? null :
             <Fab variant="extended" sx={{ bgcolor: 'lightblue' }} onClick={()=>navigate('/posts')} >
               <AddIcon sx={{ mr: 1 }} />
               Make a New Post
-            </Fab>
+            </Fab> }
         </Grid>
 
         <Grid container spacing={2} >

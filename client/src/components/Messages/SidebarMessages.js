@@ -69,12 +69,12 @@ function SidebarMessages(props) {
   }, [allUsers]);
 
   return (
-    <ListItem disablePadding>
+    <ListItem disablePadding onClick={handleChatClick}>
       <ListItemButton>
         <ListItemIcon>
             <DraftsIcon />
           </ListItemIcon>
-        <ListItemText primary={recipient} onClick={handleChatClick} />
+        <ListItemText primary={recipient}  />
       </ListItemButton>
     </ListItem>
   );
