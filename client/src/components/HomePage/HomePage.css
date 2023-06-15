@@ -1,3 +1,18 @@
-#home{
-    background: chartreuse;
+#home-about{
+    background: lightgray;
+}
+
+#home-resources{
+    background: lightgray;
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+#home-welcome{
+    margin: 20px;
+    padding: 35px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }

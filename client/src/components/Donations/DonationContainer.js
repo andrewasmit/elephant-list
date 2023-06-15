@@ -9,11 +9,12 @@ import { Box,
   Button,
   Grid
 } from "@mui/material";
-import NavigationIcon from "@mui/icons-material/Navigation";
+import SearchIcon from "@mui/icons-material/Search";
 import AddIcon from '@mui/icons-material/Add';
 
 function DonationContainer() {
     const { posts } = useSelector(state=>state.posts)
+    const { user } = useSelector(state=>state.user)
     const [search, setSearch] = useState("");
     const [filter, setFilter] = useState("");
     const navigate = useNavigate();
@@ -77,7 +78,7 @@ function DonationContainer() {
             </Grid>
             <Grid item xs={12}>
               <Fab variant="extended" type="submit" sx={{ bgcolor: 'white' }} >
-                <NavigationIcon sx={{ mr: .5 }} />
+                <SearchIcon sx={{ mr: .5 }} />
                 Search
               </Fab>
             </Grid>
@@ -92,13 +93,14 @@ function DonationContainer() {
           </Box>
         </Grid>
         
+        { user ? 
         <Grid item xs={12}>
         { filter !== "" ? null :
             <Fab variant="extended" sx={{ bgcolor: 'lightblue' }} onClick={()=>navigate('/posts')} >
               <AddIcon sx={{ mr: 1 }} />
               Make a New Post
             </Fab> }
-        </Grid>
+        </Grid> : null }
 
         <Grid container spacing={2} >
           {postsToDisplay}
