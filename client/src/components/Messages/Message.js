@@ -80,7 +80,7 @@ function Message(props) {
         <Button 
           variant="outlined" 
           type="submit" 
-          sx={{"& .MuiTextField-root": { m: 1, width: "75ch" },}}>
+          sx={{ m: 4 }}>
             Submit
         </Button>
       </Box>        

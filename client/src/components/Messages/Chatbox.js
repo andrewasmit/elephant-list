@@ -52,7 +52,7 @@ function Chatbox({ user1_id, user2_id, chatroom_id }) {
         <Button 
           variant="outlined" 
           type="submit" 
-          sx={{"& .MuiTextField-root": { m: 1, width: "75ch" }, bgcolor: "white" }}>
+          sx={{ m: 4 , bgcolor: "white" }} >
             Send
         </Button>
       </Box>

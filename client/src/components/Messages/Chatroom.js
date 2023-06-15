@@ -92,7 +92,7 @@ function Chatroom(props) {
           autoComplete="off"
           onSubmit={submitForm}
         >
-          <FormControl sx={{ m: 1, minWidth: 250 }}>
+          <FormControl sx={{ m: 1, minWidth: 350 }}>
             <InputLabel id="demo-simple-select-label">Item to Donate</InputLabel>
             <Select
               value={donateSelect}
@@ -102,7 +102,7 @@ function Chatroom(props) {
               {postOptions}
             </Select>
           </FormControl>
-          <Button variant="outlined" type="submit">Send Donation</Button>
+          <Button variant="outlined" type="submit" sx={{ m: 2 }} >Send Donation</Button>
         </Box>
 
         {messagesToDisplay}
