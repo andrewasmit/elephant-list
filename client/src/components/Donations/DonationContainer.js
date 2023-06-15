@@ -71,6 +71,7 @@ function DonationContainer() {
             <Grid item xs={12}>
               <TextField
                 id="outlined"
+                sx={{ bgcolor: 'white' }}
                 label="Search"
                 value={search}  
                 onChange={e=>setSearch(e.target.value)}

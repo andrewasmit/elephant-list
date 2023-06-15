@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background: #e8e8e4;
 }
 
 .App-logo {
@@ -38,6 +39,6 @@
   align-items: center;
 }
 .welcome-nav{
-  color:red;
+  color:darkslategray;
 }
 

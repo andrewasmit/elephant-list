@@ -1,14 +1,15 @@
 #home-about{
-    background: lightgray;
+    background: #d5bdaf;
 }
 
 #home-resources{
-    background: lightgray;
+    background: #d5bdaf;
     padding-top: 20px;
     padding-bottom: 10px;
 }
 
 #home-welcome{
+    background: #e8e8e4;
     margin: 20px;
     padding: 35px;
     display: flex;

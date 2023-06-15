@@ -93,16 +93,17 @@ function Chatroom(props) {
           onSubmit={submitForm}
         >
           <FormControl sx={{ m: 1, minWidth: 350 }}>
-            <InputLabel id="demo-simple-select-label">Item to Donate</InputLabel>
+            <InputLabel id="demo-simple-select-label">Item to Donate</InputLabel >
             <Select
               value={donateSelect}
               label="Item to Donate"
+              sx={{ bgcolor: 'white' }}
               onChange={e=>setDonateSelect(e.target.value)}
             >
               {postOptions}
             </Select>
           </FormControl>
-          <Button variant="outlined" type="submit" sx={{ m: 2 }} >Send Donation</Button>
+          <Button variant="outlined" type="submit" sx={{ m: 2, bgcolor: 'white' }} >Send Donation</Button>
         </Box>
 
         {messagesToDisplay}

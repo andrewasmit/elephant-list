@@ -52,15 +52,17 @@ function NavBar() {
           {user ? <Tab label="Messages" {...a11yProps(2)} onClick={() => navigate("/messages")} /> : null}
           {/* {user ? <Tab label="Make a New Post" {...a11yProps(4)} onClick={() => navigate("/posts")} /> : null} */}
           {user ? <Tab label="My Profile" {...a11yProps(3)} onClick={() => navigate(`/profile/${user.id}`)} /> : null}
-        </Tabs>
-      </Box>
-      <br></br>
+        
+      
       {user ? (
-        <Button onClick={handleLogout} variant="outlined" color="secondary">Logout</Button>
+        <Button onClick={handleLogout} variant="outlined" sx={{ m: 3, bgcolor: 'white' }}>Logout</Button>
       ) : (
-        <Button onClick={() => navigate("/login")} variant="outlined" color="secondary">Login</Button>
+        <Button onClick={() => navigate("/login")} variant="outlined" sx={{ m: 3, bgcolor: 'white' }}>Login</Button>
       )}
+      </Tabs>
+      <br></br>
       { user ? <Typography variant="h5" id="welcome-message" className="welcome-nav">Welcome, {user.username}!</Typography > : null}
+      </Box>
     </div>
   );
 }

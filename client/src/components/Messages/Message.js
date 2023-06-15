@@ -86,7 +86,7 @@ function Message(props) {
       </Box>        
       <Button variant="text" onClick={resetEdit}>Discard Edit Message</Button>
     </div>
-      : <Typography variant="h6">{props.body}</Typography>  }
+      : <Typography variant="h6" sx={{ bgcolor: props.user_id === user.id ? "lightgreen" : "lightgray"  }}>{props.body}</Typography>  }
     </Paper>
     </div>
   );

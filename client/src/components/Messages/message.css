@@ -6,6 +6,7 @@
 
 .message-received{
     background: rgba(0,0,0, .1);
+    /* background: red; */
     text-align: left;
     margin: 7px;
     margin-bottom: 17px;
@@ -30,7 +31,8 @@
 }
 
 .chatroom{
-    background:rgba(0,0,0, .1);
+    /* background:rgba(0,0,0, .1); */
+    background: white;
     width: 150vh;
 }
 
