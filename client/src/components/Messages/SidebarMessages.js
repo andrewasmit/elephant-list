@@ -14,8 +14,9 @@ import {
   ListItem,
   ListItemButton,
   ListItemText,
+  ListItemIcon
 } from "@mui/material";
-import { InboxIcon, MailIcon } from "@mui/icons-material";
+import DraftsIcon from '@mui/icons-material/Drafts';
 
 function SidebarMessages(props) {
   const navigate = useNavigate();
@@ -70,9 +71,9 @@ function SidebarMessages(props) {
   return (
     <ListItem disablePadding>
       <ListItemButton>
-        {/* <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon> */}
+        <ListItemIcon>
+            <DraftsIcon />
+          </ListItemIcon>
         <ListItemText primary={recipient} onClick={handleChatClick} />
       </ListItemButton>
     </ListItem>

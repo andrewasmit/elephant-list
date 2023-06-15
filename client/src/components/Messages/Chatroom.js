@@ -27,7 +27,8 @@ function Chatroom(props) {
         read={msg.read}
         body={msg.body}
         user_id={msg.user_id}
-        chatroom_id={msg.chatroom_id}
+        chatroom_id={msg.chatroom_id} 
+        username={targetUsername}
       />
     );
   });

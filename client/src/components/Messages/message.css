@@ -1,10 +1,17 @@
+/* .message-header{
+    text-align: center;
+} */
+
 .message-received{
     background: rgba(0,0,0, .1);
+    text-align: left;
 }
 
 .message-sent{
     background: lightgreen;
+    text-align: right;
 }
+
 
 #chatbox{
     background: orchid;
@@ -26,8 +33,4 @@
     margin-top: 0px;
     padding-top: 40px;
     background-color: lightblue;
-}
-
-.chatroom{
-    margin-left: 250px;
 }
