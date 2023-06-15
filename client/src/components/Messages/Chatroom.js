@@ -4,6 +4,7 @@ import Chatbox from "./Chatbox";
 import { useSelector, useDispatch } from "react-redux";
 import Popup from "../Popup/Popup";
 import { addDonationToPost } from "../../redux/postSlice";
+import { Box, Toolbar, Typography, Button, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 
 function Chatroom(props) {
   const { targetUsername } = useSelector(state=>state.chatroom);
@@ -33,7 +34,7 @@ function Chatroom(props) {
 
   const postOptions = props.user.posts.map(p=>{
     if(p.donation_id ===null) {
-      return <option value={p.id}>{p.title}</option>
+      return <MenuItem value={p.id}>{p.title}</MenuItem>
     } else
     return
   });
@@ -44,7 +45,6 @@ function Chatroom(props) {
     setPopup(true);
   }
 
-  // console.log(props.arr[0])
 
   function handleDonateItem(){
     console.log("In form: ", donateSelect) 
@@ -69,8 +69,8 @@ function Chatroom(props) {
   const confirmPopup= {
     title: "Are you sure you want to donate the selected item?",
     buttons: [
-      <button onClick={handleDonateItem}>Yes, Donate!</button>,
-      <button onClick={()=>setPopup(false)}>Whoops! No, I do not want to donate this item</button>
+      <Button onClick={handleDonateItem} variant="contained">Yes, Donate!</Button>,
+      <Button onClick={()=>setPopup(false)}variant="outlined">Whoops! No, I do not want to donate this item</Button>
     ]
   }
 
@@ -79,28 +79,41 @@ function Chatroom(props) {
   return (
     <div>
       <div className="chatroom">
-        <h2>Your conversation with {targetUsername}</h2>
-        <h3>INPUT/SELECT TO SEND DONATION TO THIS PERSON</h3>
+      <Typography variant="h4">Your conversation with {targetUsername}</Typography>
+      <Typography variant="h6">Donate one of your items to this user</Typography>
 
-        <form onSubmit={submitForm}>
-          <label>
-            Donate item to this user:
-            <select value={donateSelect} onChange={e=>setDonateSelect(e.target.value)}>
-              <option disabled >**Select an Item to Donate**</option>
+        <Box
+          component="form"
+          sx={{
+            "& .MuiTextField-root": { m: 1, width: "25ch" },
+          }}
+          noValidate
+          autoComplete="off"
+          onSubmit={submitForm}
+        >
+          <FormControl sx={{ m: 1, minWidth: 250 }}>
+            <InputLabel id="demo-simple-select-label">Item to Donate</InputLabel>
+            <Select
+              value={donateSelect}
+              label="Item to Donate"
+              onChange={e=>setDonateSelect(e.target.value)}
+            >
               {postOptions}
-            </select>
-          </label>
-          <input type="submit" value="Submit"/>
-        </form>
+            </Select>
+          </FormControl>
+          <Button variant="outlined" type="submit">Send Donation</Button>
+        </Box>
+
         {messagesToDisplay}
       </div>
+
       <Popup popupMessage={confirmPopup} trigger={popup} setPopupTrigger={setPopup}/>
       <Chatbox
         user1_id={props.arr[0].user_id}
         user2_id={props.arr[0].recipient_id}
         chatroom_id={props.arr[0].chatroom_id}
       />
-    </div>
+    </div> 
   );
 }
 
