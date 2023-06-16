@@ -73,11 +73,13 @@ function SignUpForm() {
         }}
         noValidate
         autoComplete="off"
+        onSubmit={handleSignUp}
       >
         <TextField
           required
           id="outlined-required"
           label="Username"
+          sx={{ bgcolor: "white" }}
           value={signInData.username}
           onChange={(e) =>
             setSignInData({
@@ -91,6 +93,7 @@ function SignUpForm() {
         <TextField
           required
           id="outlined-password-input"
+          sx={{ bgcolor: "white" }}
           label="Password"
           type="password"
           value={signInData.password}
@@ -107,6 +110,7 @@ function SignUpForm() {
           required
           id="outlined-password-input"
           label="Confirm Password"
+          sx={{ bgcolor: "white" }}
           type="password"
           value={signInData.confirm_password}
           onChange={(e) =>
@@ -122,6 +126,7 @@ function SignUpForm() {
           required
           id="outlined-password-input"
           label="Email Address"
+          sx={{ bgcolor: "white" }}
           type="text"
           value={signInData.email_address}
           onChange={(e) =>
@@ -133,10 +138,10 @@ function SignUpForm() {
             })
           }
         />
-        <Button onClick={handleSignUp} variant="contained">
+        <Button type="submit" variant="contained" sx={{ mt: 3, mb: 2 }}>
           Sign up!
         </Button>
-        <Button onClick={() => clearForm()} variant="outlined">
+        <Button onClick={() => clearForm()} variant="outlined" sx={{ mt: 3, mb: 2 }}>
           Reset Form
         </Button>
       </Box>
