@@ -3,20 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { addTargetChat, addTargetUsername } from "../../redux/chatroomSlice";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  Typography,
-  Box,
-  CssBaseline,
-  AppBar,
-  Toolbar,
-  Drawer,
-  Divider,
-  List,
   ListItem,
   ListItemButton,
   ListItemText,
-  ListItemIcon
+  ListItemIcon,
 } from "@mui/material";
-import DraftsIcon from '@mui/icons-material/Drafts';
+import DraftsIcon from "@mui/icons-material/Drafts";
 
 function SidebarMessages(props) {
   const navigate = useNavigate();
@@ -24,7 +16,6 @@ function SidebarMessages(props) {
   const { user } = useSelector((state) => state.user);
   const { allUsers } = useSelector((state) => state.user);
   const [recipient, setRecipient] = useState("");
-  const drawerWidth = 240;
 
   // Dynamically rendering the username in each chat
   function handleChatClick() {
@@ -72,9 +63,9 @@ function SidebarMessages(props) {
     <ListItem disablePadding onClick={handleChatClick}>
       <ListItemButton>
         <ListItemIcon>
-            <DraftsIcon />
-          </ListItemIcon>
-        <ListItemText primary={recipient}  />
+          <DraftsIcon />
+        </ListItemIcon>
+        <ListItemText primary={recipient} />
       </ListItemButton>
     </ListItem>
   );

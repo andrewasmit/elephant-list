@@ -2,8 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import Chatroom from "./Chatroom";
 import SidebarMessages from "./SidebarMessages";
-import { Typography, Box, Toolbar, Drawer, Divider, List, ListItem, ListItemButton, ListItemText } from '@mui/material';
-import { InboxIcon, MailIcon } from '@mui/icons-material';
+import { Box, Toolbar, Drawer, Divider, List, ListItemText } from '@mui/material';
 
 function MessageHome() {
   const { chatrooms, user } = useSelector((state) => state.user);
