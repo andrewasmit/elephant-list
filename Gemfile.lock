@@ -202,6 +202,8 @@ GEM
     timeout (0.3.2)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    validates_zipcode (0.5.2)
+      activemodel (>= 4.2.0)
     web-console (4.2.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -241,6 +243,7 @@ DEPENDENCIES
   selenium-webdriver
   sprockets-rails
   tzinfo-data
+  validates_zipcode
   web-console
   webdrivers
 

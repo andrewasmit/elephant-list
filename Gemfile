@@ -11,6 +11,7 @@ gem "sprockets-rails"
 
 gem "bcrypt"
 gem "faker"
+gem 'validates_zipcode'
 gem 'byebug', '~> 11.1', '>= 11.1.3'
 gem 'active_model_serializers'
 

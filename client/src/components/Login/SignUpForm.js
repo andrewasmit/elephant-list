@@ -40,7 +40,7 @@ function SignUpForm() {
         res.json()
         .then(data => dispatch(login(data)));
         clearForm();
-        dispatch(clearErrors());
+        handleNavigate('/donations');
       } else
         res.json().then((data) => {
           data.errors.map((err) => dispatch(addErrors(err)));
