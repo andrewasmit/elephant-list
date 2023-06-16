@@ -4,7 +4,7 @@ class Post < ApplicationRecord
     belongs_to :user
 
     validates_presence_of :title, :description, :zipcode
-    validates :zipcode, zipcode: { country_code: :US,  message: 'is invalid or format is incorrect.' }
+    validates :zipcode, zipcode: { country_code: :US,  message: 'is invalid or formatted incorrectly.' }
 
 
     def image_url

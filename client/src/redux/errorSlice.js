@@ -11,7 +11,7 @@ export const errorSlice = createSlice({
             state.errors = [...state.errors, action.payload];
         },
         clearErrors: (state)=>{ 
-            // console.log("Redux: Clearing the errors")
+            console.log("Redux: Clearing the errors")
             state.errors = [];
         }
     }

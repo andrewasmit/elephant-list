@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../redux/userSlice";
 import { Typography, Box, Tabs, Tab, Button } from "@mui/material";
+import {clearErrors} from "../redux/errorSlice";
 
 function NavBar() {
   const navigate = useNavigate();
@@ -13,6 +14,7 @@ function NavBar() {
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
+    dispatch(clearErrors())
   };
 
   function a11yProps(index: number) {
@@ -26,7 +28,12 @@ function NavBar() {
     fetch("logout", {
       method: "DELETE",
     }).then(dispatch(logout()));
-    navigate("/donations");
+    handleNavigate("/donations");
+  }
+
+  function handleNavigate(url){
+    dispatch(clearErrors());
+    navigate(url);
   }
 
   return (
@@ -72,7 +79,7 @@ function NavBar() {
             </Button>
           ) : (
             <Button
-              onClick={() => navigate("/login")}
+              onClick={()=>handleNavigate('/login')}
               variant="outlined"
               sx={{ m: 3, bgcolor: "white" }}
             >

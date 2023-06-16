@@ -2,6 +2,7 @@ class ChatroomsController < ApplicationController
     before_action :check_for_chatroom
 
     def create
+        byebug
         chatroom = Chatroom.create!(chatroom_params)
         chatroom.messages.create!(message_params)
         render json: chatroom.messages, status: :created
