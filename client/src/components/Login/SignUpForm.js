@@ -12,9 +12,11 @@ function SignUpForm() {
   const [signInData, setSignInData] = useState({
     username: "",
     password: "",
-    confirm_password: "",
+    password_confirmation: "",
     email_address: "",
   });
+
+  console.log(signInData)
 
   const errorsToDisplay = errors.map((err, idx) => {
     return (
@@ -35,7 +37,8 @@ function SignUpForm() {
       },
     }).then((res) => {
       if (res.ok) {
-        res.json().data((data) => dispatch(login(data)));
+        res.json()
+        .then(data => dispatch(login(data)));
         clearForm();
         dispatch(clearErrors());
       } else
@@ -49,7 +52,7 @@ function SignUpForm() {
     setSignInData({
       username: "",
       password: "",
-      confirm_password: "",
+      password_confirmation: "",
       email_address: "",
     });
     dispatch(clearErrors());
@@ -85,7 +88,7 @@ function SignUpForm() {
             setSignInData({
               username: e.target.value,
               password: signInData.password,
-              confirm_password: signInData.confirm_password,
+              confirm_password: signInData.password_confirmation,
               email_address: signInData.email_address,
             })
           }
@@ -101,7 +104,7 @@ function SignUpForm() {
             setSignInData({
               username: signInData.username,
               password: e.target.value,
-              confirm_password: signInData.confirm_password,
+              confirm_password: signInData.password_confirmation,
               email_address: signInData.email_address,
             })
           }
@@ -112,12 +115,12 @@ function SignUpForm() {
           label="Confirm Password"
           sx={{ bgcolor: "white" }}
           type="password"
-          value={signInData.confirm_password}
+          value={signInData.password_confirmation}
           onChange={(e) =>
             setSignInData({
               username: signInData.username,
               password: signInData.password,
-              confirm_password: e.target.value,
+              password_confirmation: e.target.value,
               email_address: signInData.email_address,
             })
           }
@@ -133,7 +136,7 @@ function SignUpForm() {
             setSignInData({
               username: signInData.username,
               password: signInData.password,
-              confirm_password: signInData.confirm_password,
+              password_confirmation: signInData.password_confirmation,
               email_address: e.target.value,
             })
           }

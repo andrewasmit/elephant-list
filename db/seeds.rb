@@ -1,6 +1,7 @@
 require 'faker'
 puts 'Seeding 🌱'
 
+
 User.create(
     username: "andrewasmit", 
     password: "123456",
@@ -174,7 +175,7 @@ toy3 = Post.create(
     zipcode: Faker::Address.zip_code,
     user_id: Faker::Number.between(from: 1, to: 3),
 )
-toy2.images.attach(io: File.open(Rails.root.join('db/images/walker.jpeg')),
+toy3.images.attach(io: File.open(Rails.root.join('db/images/walker.jpeg')),
 filename: 'walker.jpeg')
 
 diaper3 = Post.create(
