@@ -1,5 +1,5 @@
 import React from "react";
-import '../App.css'
+import "../App.css";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../redux/userSlice";
@@ -18,7 +18,7 @@ function NavBar() {
   function a11yProps(index: number) {
     return {
       id: `simple-tab-${index}`,
-      'aria-controls': `simple-tabpanel-${index}`,
+      "aria-controls": `simple-tabpanel-${index}`,
     };
   }
 
@@ -26,42 +26,66 @@ function NavBar() {
     fetch("logout", {
       method: "DELETE",
     }).then(dispatch(logout()));
-    navigate('/donations');
+    navigate("/donations");
   }
 
   return (
     <div id="navbar">
-      {/* <h1>THIS IS THE NAVBAR</h1>
-      <button onClick={() => navigate("/home")}>Home</button>
-      <button onClick={() => navigate("/donations")}>Donations</button>
-      { user ? <button onClick={() => navigate("/posts")}>New Post</button> : null }
-      { user ? (
-        <button onClick={handleLogout}>Logout</button>
-      ) : (
-        <button onClick={() => navigate("/login")}>Login</button>
-      ) }
+      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          aria-label="basic tabs example"
+        >
+          <Tab
+            label="Home"
+            {...a11yProps(0)}
+            onClick={() => navigate("/home")}
+          />
+          <Tab
+            label="Donations"
+            {...a11yProps(1)}
+            onClick={() => navigate("/donations")}
+          />
+          {user ? (
+            <Tab
+              label="Messages"
+              {...a11yProps(2)}
+              onClick={() => navigate("/messages")}
+            />
+          ) : null}
+          {user ? (
+            <Tab
+              label="My Profile"
+              {...a11yProps(3)}
+              onClick={() => navigate(`/profile/${user.id}`)}
+            />
+          ) : null}
 
-      { user ? <button onClick={() => navigate("/messages")}>Messages</button> : null }
-      { user ? <button onClick={() => navigate(`/profile/${user.id}`)}>My Profile</button> : null } */}
-
-
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }} >
-        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label="Home" {...a11yProps(0)} onClick={() => navigate("/home")} />
-          <Tab label="Donations" {...a11yProps(1)} onClick={() => navigate("/donations")} />
-          {user ? <Tab label="Messages" {...a11yProps(2)} onClick={() => navigate("/messages")} /> : null}
-          {/* {user ? <Tab label="Make a New Post" {...a11yProps(4)} onClick={() => navigate("/posts")} /> : null} */}
-          {user ? <Tab label="My Profile" {...a11yProps(3)} onClick={() => navigate(`/profile/${user.id}`)} /> : null}
-        
-      
-      {user ? (
-        <Button onClick={handleLogout} variant="outlined" sx={{ m: 3, bgcolor: 'white' }}>Logout</Button>
-      ) : (
-        <Button onClick={() => navigate("/login")} variant="outlined" sx={{ m: 3, bgcolor: 'white' }}>Login</Button>
-      )}
-      </Tabs>
-      <br></br>
-      { user ? <Typography variant="h5" id="welcome-message" className="welcome-nav">Welcome, {user.username}!</Typography > : null}
+          {user ? (
+            <Button
+              onClick={handleLogout}
+              variant="outlined"
+              sx={{ m: 3, bgcolor: "white" }}
+            >
+              Logout
+            </Button>
+          ) : (
+            <Button
+              onClick={() => navigate("/login")}
+              variant="outlined"
+              sx={{ m: 3, bgcolor: "white" }}
+            >
+              Login
+            </Button>
+          )}
+        </Tabs>
+        <br></br>
+        {user ? (
+          <Typography variant="h5" id="welcome-message" className="welcome-nav">
+            Welcome, {user.username}!
+          </Typography>
+        ) : null}
       </Box>
     </div>
   );
