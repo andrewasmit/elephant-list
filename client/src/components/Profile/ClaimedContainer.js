@@ -20,9 +20,7 @@ function ClaimedContainer() {
   return (
     <div>
       <Typography variant="h4">Your claimed Donations</Typography>
-      <Grid container >
-        {claimedDonations}
-      </Grid>
+      <Grid container>{claimedDonations}</Grid>
     </div>
   );
 }
