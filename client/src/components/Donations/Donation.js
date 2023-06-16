@@ -6,7 +6,14 @@ import { useNavigate } from "react-router-dom";
 import { addErrors, clearErrors } from "../../redux/errorSlice";
 import { addTargetChat } from "../../redux/chatroomSlice";
 import { startChatroom } from "../../redux/userSlice";
-import { Paper, Typography, Grid, Button, ImageList, ImageListItem, Box, TextField } from "@mui/material";
+import {
+  Paper,
+  Typography,
+  Grid,
+  Button,
+  ImageList,
+  ImageListItem
+} from "@mui/material";
 
 function Donation({
   title,
@@ -21,7 +28,6 @@ function Donation({
   const targetChat = useSelector((state) => state.chatroom);
   const [popupTrigger, setPopupTrigger] = useState(false);
   const [popupMsg, setPopupMsg] = useState({});
-  const [msgBody, setMsgBody] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -30,34 +36,15 @@ function Donation({
     setPopupMsg(obj);
   }
 
-  console.log(msgBody)
-
   function handleMessageUser() {
     if (user && user.id !== user_id) {
       handlePopUp({
         title: "Message the owner of this post",
         buttons: [
-        //   <Box
-        //       component="form"
-        //       sx={{
-        //         "& .MuiTextField-root": { m: 1, width: "25ch" },
-        //       }}
-        //       noValidate
-        //       autoComplete="off"
-        //     >
-        //       <TextField
-        //         id="outlined"
-        //         label="Message"
-        //         type="text"
-        //         value={msgBody}
-        //         onChange={e=>setMsgBody(e.target.value)}
-        //       />
-        //       <Button variant="outlined" onClick={handleSendMessage}>Send Message</Button>
-        // </Box>
-        <form onSubmit={handleSendMessage} key={1}>
-          <input type="text" />
-          <input type="submit" />
-      </form>,
+          <form onSubmit={handleSendMessage} key={1}>
+            <input type="text" />
+            <input type="submit" />
+          </form>
         ],
       });
     } else if (user && user.id === user_id) {
@@ -68,10 +55,18 @@ function Donation({
       handlePopUp({
         title: "You must be signed in to message post owners",
         buttons: [
-          <Button onClick={() => navigate("/login")} key={1} variant="contained">
+          <Button
+            onClick={() => navigate("/login")}
+            key={1}
+            variant="contained"
+          >
             Login to my account
           </Button>,
-          <Button onClick={() => navigate("/signup")} key={2} variant="outlined" >
+          <Button
+            onClick={() => navigate("/signup")}
+            key={2}
+            variant="outlined"
+          >
             No account yet? Signup!
           </Button>,
         ],
@@ -80,7 +75,6 @@ function Donation({
 
   function handleSendMessage(e) {
     e.preventDefault();
-    console.log(e.target)
     const msg = {
       body: e.target[0].value,
       user_id: user.id,
@@ -117,53 +111,41 @@ function Donation({
   }
 
   return (
-    <Paper elevation={12} className="donation-card" >
-    <Grid item xs={12} md={6} lg={12} id={id} >
-      <div className={donation_id === null ? "" : "donation-claimed"}>
-        <Typography variant="h4">{title}</Typography>
-        <Typography variant="p">{description}</Typography>
-        <Typography variant="subtitle1">Zipcode: {zipcode}</Typography>
+    <Paper elevation={12} className="donation-card">
+      <Grid item xs={12} md={6} lg={12} id={id}>
+        <div className={donation_id === null ? "" : "donation-claimed"}>
+          <Typography variant="h4">{title}</Typography>
+          <Typography variant="p">{description}</Typography>
+          <Typography variant="subtitle1">Zipcode: {zipcode}</Typography>
 
-        {/* {image_url === null
-          ? null
-          : image_url.map((img, idx) => {
-              return (
-                <img
-                  src={img}
-                  alt="image of post items"
-                  className="post-image-card"
-                  key={idx}
-                />
-              );
-            })} */}
+          {image_url === null ? null : (
+            <ImageList
+              sx={{ width: 550, height: 450 }}
+              cols={image_url.length < 3 ? image_url.length : 3}
+              rowHeight={20}
+            >
+              {image_url.map((img, idx) => (
+                <ImageListItem key={idx}>
+                  <img src={img} alt={title} loading="lazy" />
+                </ImageListItem>
+              ))}
+            </ImageList>
+          )}
 
-        { image_url === null ? null :
-        <ImageList sx={{ width: 550, height: 450 }} cols={image_url.length < 3 ? image_url.length : 3 } rowHeight={20}>
-          {image_url.map((img, idx) => (
-            <ImageListItem key={idx}>
-              <img
-                src={img}
-                alt={title}
-                loading="lazy"
-              />
-            </ImageListItem>
-          ))}
-        </ImageList> }
-
-
-
-        {donation_id === null ? (
-          <Button onClick={handleMessageUser} variant="outlined" >I'm interested!</Button>
-        ) : (
-          <h3>This post has been donated</h3>
-        )}
-        <Popup
-          trigger={popupTrigger}
-          setPopupTrigger={setPopupTrigger}
-          popupMessage={popupMsg}
-        />
-      </div>
-    </Grid>
+          {donation_id === null ? (
+            <Button onClick={handleMessageUser} variant="outlined">
+              I'm interested!
+            </Button>
+          ) : (
+            <h3>This has been donated</h3>
+          )}
+          <Popup
+            trigger={popupTrigger}
+            setPopupTrigger={setPopupTrigger}
+            popupMessage={popupMsg}
+          />
+        </div>
+      </Grid>
     </Paper>
   );
 }

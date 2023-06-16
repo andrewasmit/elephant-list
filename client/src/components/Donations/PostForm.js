@@ -48,161 +48,122 @@ function PostForm() {
           user_id: user.id,
           zipcode: "",
         });
-        handleNavigate('/donations');
+        handleNavigate("/donations");
       } else
-      res.json().then(data=>{
-        data.errors.map(err=> dispatch(addErrors(err)))
-      })
+        res.json().then((data) => {
+          data.errors.map((err) => dispatch(addErrors(err)));
+        });
     });
   }
 
-  function handleNavigate(url){
-    dispatch(clearErrors())
-    navigate(url)
+  function handleNavigate(url) {
+    dispatch(clearErrors());
+    navigate(url);
   }
 
-  function resetPost(){
-    dispatch(clearErrors())
+  function resetPost() {
+    dispatch(clearErrors());
     setNewPost({
       title: "",
       description: "",
       user_id: user.id,
       zipcode: "",
     });
-    handleNavigate('/donations')
+    handleNavigate("/donations");
   }
 
-  const errorsToDisplay = errors.map((err, idx)=>{
-    return <li key={idx} className="error-list-item">{err}</li>
-  })
-
+  const errorsToDisplay = errors.map((err, idx) => {
+    return (
+      <li key={idx} className="error-list-item">
+        {err}
+      </li>
+    );
+  });
 
   // Return JSX
-    return (
-      <div>
-        <Typography variant="h3" className="new-post-header">Create a New Post</Typography >
-        {/* <form onSubmit={(e) => handleUpload(e)}>
-          <label>
-            Title:
-            <input
-              type="text"
-              name="title"
-              value={newPost.title}
-              onChange={(e) =>
-                setNewPost({
-                  title: e.target.value,
-                  description: newPost.description,
-                  zipcode: newPost.zipcode,
-                  user_id: user.id,
-                })
-              }
-            />
-          </label>
-          <label>
-            Description:
-            <input
-              type="text"
-              name="description"
-              value={newPost.description}
-              onChange={(e) =>
-                setNewPost({
-                  title: newPost.title,
-                  description: e.target.value,
-                  zipcode: newPost.zipcode,
-                  user_id: user.id,
-                })
-              }
-            />
-          </label>
-          <label>
-            Zipcode:
-            <input
-              type="text"
-              name="zipcode"
-              value={newPost.zipcode}
-              onChange={(e) =>
-                setNewPost({
-                  title: newPost.title,
-                  description: newPost.description,
-                  zipcode: e.target.value,
-                  user_id: user.id,
-                })
-              }
-            />
-          </label>
-          <input type="file" name="image" multiple ref={imagesRef} />
-          <button type="submit">Upload Post</button>
-        </form> */}
+  return (
+    <div>
+      <Typography variant="h3" className="new-post-header">
+        Create a New Post
+      </Typography>
+      <Box
+        component="form"
+        sx={{
+          "& .MuiTextField-root": { m: 1, width: "25ch" },
+        }}
+        noValidate
+        autoComplete="off"
+        onSubmit={(e) => handleUpload(e)}
+      >
+        <TextField
+          required
+          id="outlined-required"
+          label="Title"
+          name="title"
+          value={newPost.title}
+          onChange={(e) =>
+            setNewPost({
+              title: e.target.value,
+              description: newPost.description,
+              zipcode: newPost.zipcode,
+              user_id: user.id,
+            })
+          }
+        />
+        <br></br>
+        <TextField
+          required
+          id="outlined-required"
+          multiline
+          rows={3}
+          label="Description"
+          name="description"
+          value={newPost.description}
+          onChange={(e) =>
+            setNewPost({
+              title: newPost.title,
+              description: e.target.value,
+              zipcode: newPost.zipcode,
+              user_id: user.id,
+            })
+          }
+        />
+        <br></br>
+        <TextField
+          required
+          id="outlined-required"
+          label="Zipcode"
+          value={newPost.zipcode}
+          onChange={(e) =>
+            setNewPost({
+              title: newPost.title,
+              description: newPost.description,
+              zipcode: e.target.value,
+              user_id: user.id,
+            })
+          }
+        />
+        <br></br>
+        <input
+          type="file"
+          name="image"
+          multiple
+          ref={imagesRef}
+          className="file-upload"
+        />
+        <br></br>
+        <Button variant="contained" type="submit" sx={{ m: 2 }}>
+          Create Post
+        </Button>
+        <br></br>
+        <Button variant="text" onClick={resetPost}>
+          Discard New Post
+        </Button>
+      </Box>
 
-        <Box
-          component="form"
-          sx={{
-            "& .MuiTextField-root": { m: 1, width: "25ch" },
-          }}
-          noValidate
-          autoComplete="off"
-          onSubmit={e=>handleUpload(e)}
-        >
-          <TextField
-            required
-            id="outlined-required"
-            label="Title"
-            name="title"
-            value={newPost.title}
-            onChange={(e) =>
-              setNewPost({
-                title: e.target.value,
-                description: newPost.description,
-                zipcode: newPost.zipcode,
-                user_id: user.id,
-              })
-            }
-          />
-          <br></br>
-          <TextField
-            required
-            id="outlined-required"
-            multiline
-            rows={3}
-            label="Description"
-            name="description"
-            value={newPost.description}
-            onChange={(e) =>
-              setNewPost({
-                title: newPost.title,
-                description: e.target.value,
-                zipcode: newPost.zipcode,
-                user_id: user.id,
-              })
-            }
-          />
-          <br></br>
-          <TextField
-            required
-            id="outlined-required"
-            label="Zipcode"
-            value={newPost.zipcode}
-              onChange={(e) =>
-                setNewPost({
-                  title: newPost.title,
-                  description: newPost.description,
-                  zipcode: e.target.value,
-                  user_id: user.id,
-                })
-              }
-          />
-          <br></br>
-          <input type="file" name="image" multiple ref={imagesRef} className="file-upload"/>
-          <br></br>
-          <Button variant="contained" type="submit" sx={{ m: 2 }}>Create Post</Button>
-          <br></br>
-          <Button variant="text" onClick={resetPost} >Discard New Post</Button>
-
-        </Box>
-
-        { errorsToDisplay.length > 0 ? errorsToDisplay : null}
-      </div>
-    );
-  } 
+      {errorsToDisplay.length > 0 ? errorsToDisplay : null}
+    </div>
+  );
+}
 
 export default PostForm;
