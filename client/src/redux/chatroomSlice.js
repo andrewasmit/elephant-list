@@ -8,19 +8,19 @@ export const chatroomSlice = createSlice({
     },
     reducers: {
         addTargetChat: (state, action)=>{ 
-            console.log("Redux: Targeting chatroom")
+            // console.log("Redux: Targeting chatroom")
             state.targetChat = action.payload;
         },
         clearTargetChat: (state)=>{ 
-            console.log("Redux: Clearing target chatroom")
+            // console.log("Redux: Clearing target chatroom")
             state.targetChat = null;
         },
         addTargetUsername: (state, action)=>{
-            console.log("Redux: adding target username")
+            // console.log("Redux: adding target username")
             state.targetUsername = action.payload
         },
         clearTargetUsername: state=>{
-            console.log("Redux: clearing target username")
+            // console.log("Redux: clearing target username")
             state.targetUsername = null
         }
     }
