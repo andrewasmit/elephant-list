@@ -16,7 +16,6 @@ function SignUpForm() {
     email_address: "",
   });
 
-  console.log(signInData)
 
   const errorsToDisplay = errors.map((err, idx) => {
     return (

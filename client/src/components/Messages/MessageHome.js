@@ -16,7 +16,7 @@ function MessageHome() {
   const { targetChat } = useSelector((state) => state.chatroom);
   const drawerWidth = 240;
 
-  console.log(user)
+  // console.log(user)
 
   const chatSideIcons = chatrooms.map((chat, idx) => {
     return (

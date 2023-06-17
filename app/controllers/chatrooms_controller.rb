@@ -3,7 +3,7 @@ class ChatroomsController < ApplicationController
 
     def create
         byebug
-        chatroom = Chatroom.create!(chatroom_params)
+        chatroom = Chatroom.create!(user_a_id: params[:user_id], user_b_id: params[:recipient_id] )
         chatroom.messages.create!(message_params)
         render json: chatroom.messages, status: :created
     end
